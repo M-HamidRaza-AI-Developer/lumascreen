@@ -13,34 +13,49 @@ TMDB_BASE    = "https://api.themoviedb.org/3"
 TMDB_IMG     = "https://image.tmdb.org/t/p/w500"
 TMDB_IMG_BIG = "https://image.tmdb.org/t/p/w1280"
 
+# Fallback sample movie data in case of offline/network/DNS errors
+FALLBACK_MOVIES = [
+    {
+        "id": 1,
+        "title": "LumaScreen Exclusive Sample",
+        "overview": "This is a placeholder movie because internet connection to TMDB is currently offline or unreachable.",
+        "poster_path": "",
+        "backdrop_path": "",
+        "vote_average": 8.5,
+        "release_date": "2026-01-01",
+        "genre_ids": [28, 12],
+        "original_language": "en"
+    }
+]
+
 def tmdb_get(endpoint: str, params: dict = None) -> dict:
     if not TMDB_API_KEY:
-        return {}
+        return {"results": FALLBACK_MOVIES}
     url = f"{TMDB_BASE}{endpoint}"
     p = {"api_key": TMDB_API_KEY, "language": "en-US"}
     if params:
         p.update(params)
     try:
-        resp = requests.get(url, params=p, timeout=10)
+        resp = requests.get(url, params=p, timeout=5)
         resp.raise_for_status()
         return resp.json()
     except Exception as e:
-        logger.error(f"❌ TMDB error on {endpoint}: {e}")
-        return {}
+        logger.warning(f"⚠️ TMDB offline/network warning on {endpoint}: {e}. Using fallback data.")
+        return {"results": FALLBACK_MOVIES, "genres": [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}]}
 
 def fetch_now_playing() -> list:
     movies = []
     for page in range(1, 4):
         data = tmdb_get("/movie/now_playing", {"page": page})
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_upcoming() -> list:
     movies = []
     for page in range(1, 3):
         data = tmdb_get("/movie/upcoming", {"page": page})
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_bollywood() -> list:
     movies = []
@@ -51,7 +66,7 @@ def fetch_bollywood() -> list:
             "page": page
         })
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_anime() -> list:
     movies = []
@@ -63,7 +78,7 @@ def fetch_anime() -> list:
             "page": page
         })
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_kids() -> list:
     movies = []
@@ -74,22 +89,25 @@ def fetch_kids() -> list:
             "page": page
         })
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_trending() -> list:
     movies = []
     for page in range(1, 4):
         data = tmdb_get("/trending/movie/week", {"page": page})
         movies.extend(data.get("results", []))
-    return movies
+    return movies if movies else FALLBACK_MOVIES
 
 def fetch_movie_news() -> list:
     data = tmdb_get("/movie/upcoming", {"page": 1})
-    return data.get("results", [])[:15]
+    results = data.get("results", [])
+    return results[:15] if results else FALLBACK_MOVIES
 
 def get_genres() -> dict:
     data = tmdb_get("/genre/movie/list")
     genres = data.get("genres", [])
+    if not genres:
+        return {28: "Action", 12: "Adventure", 16: "Animation", 10751: "Family"}
     return {g["id"]: g["name"] for g in genres}
 
 def genre_tags_html(genre_ids: list, genre_map: dict) -> str:
