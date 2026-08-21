@@ -385,4 +385,53 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 .no-results { text-align:center; padding:80px 20px; color:var(--text2); grid-column:1/-1; }
 .no-results .nr-icon { font-size:64px; margin-bottom:16px; }
 .no-results h3 { font-size:20px; margin-bottom:8px; color:var(--text); }
+
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+========================================= */
+@media screen and (max-width: 768px) {
+  /* Navbar Adjustments */
+  .navbar { padding: 10px 16px; flex-wrap: wrap; height: auto; gap: 12px; justify-content: center; }
+  .nav-brand-name { font-size: 20px; }
+  .nav-tabs { width: 100%; overflow-x: auto; padding-bottom: 4px; justify-content: flex-start; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-search { width: 140px; }
+  .nav-search:focus { width: 180px; }
+  .nav-right { width: 100%; justify-content: space-between; }
+
+  /* Hero Section Adjustments */
+  .hero-section { height: 420px; }
+  .hero-content { padding: 0 20px; }
+  .hero-title { font-size: 28px; }
+  .hero-overview { font-size: 13px; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .hero-nav-btn { width: 36px; height: 36px; font-size: 16px; }
+  .hero-prev { left: 10px; }
+  .hero-next { right: 10px; }
+
+  /* Movie Grid & Cards */
+  .section-wrap { padding: 24px 16px 0; }
+  .movies-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; padding: 0 16px 24px; }
+  .movies-slider { padding: 10px 16px 20px; }
+  .movies-slider .movie-card { min-width: 140px; max-width: 140px; }
+  .movie-card:hover { transform: translateY(-3px) scale(1.02); }
+
+  /* Modal Adjustments */
+  #modal-body-content { max-width: 92% !important; margin: 15px; max-height: 85vh !important; }
+  
+  /* Auth & Account Pages */
+  .auth-card { padding: 32px 20px; margin: 20px; max-width: 90%; }
+  .account-page { padding: 24px 16px; }
+  .profile-card { flex-direction: column; text-align: center; gap: 16px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .edit-form .form-row { grid-template-columns: 1fr; gap: 0; }
+  .logout-btn { margin-left: 0; margin-top: 12px; width: 100%; }
+  
+  /* Subscription Plans & Footer */
+  .sub-page { padding: 24px 16px; }
+  .sub-plans { grid-template-columns: 1fr; gap: 16px; }
+  .cta-newsletter { margin: 30px 16px 20px; padding: 32px 20px; }
+  .cta-form { flex-direction: column; }
+  .cta-btn { width: 100%; }
+  .luma-links-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
 """
