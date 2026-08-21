@@ -2,22 +2,20 @@
 
 LOGO_SVG = """<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="splash-svg">
   <defs>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.4"/>
+    <radialGradient id="splashGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.5"/>
       <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF099"/>
+    <linearGradient id="splashGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
       <stop offset="50%" stop-color="#FFD700"/>
-      <stop offset="100%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#FF9900"/>
     </linearGradient>
   </defs>
-  <circle cx="60" cy="60" r="58" fill="url(#glow)"/>
-  <circle cx="60" cy="60" r="52" fill="#12131a" stroke="url(#gold)" stroke-width="3"/>
-  <circle cx="60" cy="60" r="36" fill="#1a1a2e" stroke="url(#gold)" stroke-width="2"/>
-  <circle cx="60" cy="60" r="12" fill="url(#gold)"/>
-  <circle cx="60" cy="60" r="5" fill="#0D0D0D"/>
-  <polygon points="53,49 53,71 75,60" fill="url(#gold)" opacity="0.95"/>
+  <circle cx="60" cy="60" r="58" fill="url(#splashGlow)"/>
+  <circle cx="60" cy="60" r="48" fill="#12131A" stroke="url(#splashGold)" stroke-width="4"/>
+  <circle cx="60" cy="60" r="28" fill="none" stroke="url(#splashGold)" stroke-width="2" stroke-dasharray="6 6" opacity="0.7"/>
+  <circle cx="60" cy="60" r="12" fill="url(#splashGold)"/>
 </svg>"""
 
 LOGO_SVG_SMALL = """<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));">
