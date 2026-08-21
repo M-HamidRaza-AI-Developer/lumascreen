@@ -20,19 +20,11 @@ LOGO_SVG = """<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" clas
   <polygon points="53,49 53,71 75,60" fill="url(#gold)" opacity="0.95"/>
 </svg>"""
 
-LOGO_SVG_SMALL = """<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));">
-  <defs>
-    <linearGradient id="proGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF3B0"/>
-      <stop offset="50%" stop-color="#FFD700"/>
-      <stop offset="100%" stop-color="#FF9900"/>
-    </linearGradient>
-  </defs>
-  <circle cx="17" cy="17" r="15" fill="#0D0E13" stroke="url(#proGold)" stroke-width="2"/>
-  <circle cx="17" cy="17" r="10" stroke="url(#proGold)" stroke-width="1" stroke-dasharray="2 2" opacity="0.6"/>
-  <circle cx="17" cy="17" r="4.5" fill="url(#proGold)"/>
+LOGO_SVG_SMALL = """<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));">
+  <circle cx="17" cy="17" r="15" fill="#181A24" stroke="#FFD700" stroke-width="2.5"/>
+  <circle cx="17" cy="17" r="8" fill="none" stroke="#FFF099" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="17" cy="17" r="4" fill="#FFD700"/>
 </svg>"""
-
 CSS = """
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
