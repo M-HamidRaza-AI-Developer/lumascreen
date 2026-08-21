@@ -385,6 +385,7 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 .no-results { text-align:center; padding:80px 20px; color:var(--text2); grid-column:1/-1; }
 .no-results .nr-icon { font-size:64px; margin-bottom:16px; }
 .no-results h3 { font-size:20px; margin-bottom:8px; color:var(--text); }
+
 /* ============================================
    RESPONSIVE / MOBILE-FIRST FIXES
    Add this block at the END of CSS in styles.py
@@ -404,14 +405,16 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 /* ---------- MOBILE (max-width: 768px) ---------- */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 14px;
+    padding: 10px 14px;
     height: auto;
     flex-wrap: wrap;
     gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    justify-content: space-between;
   }
+  .nav-brand { order: 1; }
+  .nav-right { order: 2; gap: 10px; justify-content: flex-end; }
   .nav-brand-name { font-size: 18px; }
+  
   .nav-tabs {
     order: 3;
     width: 100%;
@@ -422,19 +425,18 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   }
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tab { white-space: nowrap; flex-shrink: 0; }
-  .nav-right { gap: 10px; }
 
-  /* FIX: search dropdown overflowing screen on mobile */
-  .nav-search-wrap { position: static; }
+  /* FIX: search dropdown perfectly aligned under search bar */
+  .nav-search-wrap { position: relative; }
   .nav-search { width: 130px; font-size: 12px; }
   .nav-search:focus { width: 150px; }
   .search-dropdown {
-    position: fixed;
-    top: auto;
-    left: 10px;
-    right: 10px;
-    width: auto;
-    max-width: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    width: 280px;
+    max-width: 90vw;
   }
 
   .top-quick-bar { padding: 8px 14px; gap: 10px; top: auto; }

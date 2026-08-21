@@ -357,6 +357,7 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 .no-results { text-align:center; padding:80px 20px; color:var(--text2); grid-column:1/-1; }
 .no-results .nr-icon { font-size:64px; margin-bottom:16px; }
 .no-results h3 { font-size:20px; margin-bottom:8px; color:var(--text); }
+
 /* ============================================
    RESPONSIVE / MOBILE-FIRST FIXES
    Add this block at the END of CSS in styles.py
@@ -376,14 +377,16 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 /* ---------- MOBILE (max-width: 768px) ---------- */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 14px;
+    padding: 10px 14px;
     height: auto;
     flex-wrap: wrap;
     gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    justify-content: space-between;
   }
+  .nav-brand { order: 1; }
+  .nav-right { order: 2; gap: 10px; justify-content: flex-end; }
   .nav-brand-name { font-size: 18px; }
+  
   .nav-tabs {
     order: 3;
     width: 100%;
@@ -394,19 +397,18 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   }
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tab { white-space: nowrap; flex-shrink: 0; }
-  .nav-right { gap: 10px; }
 
-  /* FIX: search dropdown overflowing screen on mobile */
-  .nav-search-wrap { position: static; }
+  /* FIX: search dropdown perfectly aligned under search bar */
+  .nav-search-wrap { position: relative; }
   .nav-search { width: 130px; font-size: 12px; }
   .nav-search:focus { width: 150px; }
   .search-dropdown {
-    position: fixed;
-    top: auto;
-    left: 10px;
-    right: 10px;
-    width: auto;
-    max-width: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    width: 280px;
+    max-width: 90vw;
   }
 
   .top-quick-bar { padding: 8px 14px; gap: 10px; top: auto; }
@@ -618,7 +620,7 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   <!-- HOME PAGE -->
   <div id="page-home">
     <div class="hero-section">
-      <div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/xYro90dW4z7es4JG1vo1bmZ0lUN.jpg')">
+      <div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/frG3IO5kCrnyXDt1q9x4JtToSw3.jpg')">
       <div class="hero-overlay">
         <div class="hero-content">
           <div class="hero-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
@@ -636,6 +638,26 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
           <div class="hero-rating"><span class="rating-badge" style="background:#27ae60;position:static">⭐ 7.9</span></div>
           <p class="hero-overview">Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Pe…</p>
           <button class="hero-btn" onclick="showMovieDetail(969681)">▶ Watch Now</button>
+        </div>
+      </div>
+    </div><div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/rZfmzpixLKLR3Hg2u0WgC7XLFl8.jpg')">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
+          <h1 class="hero-title">Obsession</h1>
+          <div class="hero-rating"><span class="rating-badge" style="background:#27ae60;position:static">⭐ 8.2</span></div>
+          <p class="hero-overview">After breaking the mysterious "One Wish Willow" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers…</p>
+          <button class="hero-btn" onclick="showMovieDetail(1339713)">▶ Watch Now</button>
+        </div>
+      </div>
+    </div><div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/b9q9VmbXDvJmTziRqkwdEmFdwhr.jpg')">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Mystery</span><span class="genre-tag">Thriller</span></div>
+          <h1 class="hero-title">The End of Oak Street</h1>
+          <div class="hero-rating"><span class="rating-badge" style="background:#f39c12;position:static">⭐ 6.5</span></div>
+          <p class="hero-overview">After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace unknown, the Platt family soon discovers that their…</p>
+          <button class="hero-btn" onclick="showMovieDetail(1101383)">▶ Watch Now</button>
         </div>
       </div>
     </div><div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/8sSKdEmlmqF4kJUd28SqthXC4yZ.jpg')">
@@ -656,26 +678,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
           <div class="hero-rating"><span class="rating-badge" style="background:#27ae60;position:static">⭐ 8.0</span></div>
           <p class="hero-overview">Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront th…</p>
           <button class="hero-btn" onclick="showMovieDetail(1368337)">▶ Watch Now</button>
-        </div>
-      </div>
-    </div><div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/rZfmzpixLKLR3Hg2u0WgC7XLFl8.jpg')">
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <div class="hero-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
-          <h1 class="hero-title">Obsession</h1>
-          <div class="hero-rating"><span class="rating-badge" style="background:#27ae60;position:static">⭐ 8.2</span></div>
-          <p class="hero-overview">After breaking the mysterious "One Wish Willow" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers…</p>
-          <button class="hero-btn" onclick="showMovieDetail(1339713)">▶ Watch Now</button>
-        </div>
-      </div>
-    </div><div class="hero-slide" style="background-image:url('https://image.tmdb.org/t/p/w1280/kkcwhgSFd81QDlXo8ytrpHPQjhy.jpg')">
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <div class="hero-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
-          <h1 class="hero-title">Minions & Monsters</h1>
-          <div class="hero-rating"><span class="rating-badge" style="background:#27ae60;position:static">⭐ 7.5</span></div>
-          <p class="hero-overview">This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto…</p>
-          <button class="hero-btn" onclick="showMovieDetail(1315772)">▶ Watch Now</button>
         </div>
       </div>
     </div>
@@ -1167,7 +1169,7 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
       <button class="slider-arrow arrow-left" onclick="slideRow('trending-slider', -1)">&#8249;</button>
       <div class="movies-slider" id="trending-slider"><div class="movie-card" onclick="showMovieDetail(1288445)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/aAnTt6KpmbbHbd6xH3FQFlppZjc.jpg" alt="Mutiny" loading="lazy">
+        <img src="https://image.tmdb.org/t/p/w500/pVMxkaViouALWwc1EdZBaiZJTxJ.jpg" alt="Mutiny" loading="lazy">
         <span class="rating-badge" style="background:#27ae60">⭐ 7.1</span>
       </div>
       <div class="card-info">
@@ -1186,6 +1188,28 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-07-29</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1339713)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg" alt="Obsession" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Obsession</div>
+        <div class="card-year">🗓️ 2026-05-13</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">After breaking the mysterious "One Wish Willow" to win his crush's heart, a hopeless romantic finds himself ge…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1101383)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/fYXqpgPmHMphSF2W30GbTeJVIa5.jpg" alt="The End of Oak Street" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">The End of Oak Street</div>
+        <div class="card-year">🗓️ 2026-08-12</div>
+        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Mystery</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace u…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1084244)">
       <div class="card-poster-wrap">
@@ -1209,50 +1233,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Action</span><span class="genre-tag">Fantasy</span></div>
         <div class="card-overview">Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. …</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1339713)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg" alt="Obsession" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Obsession</div>
-        <div class="card-year">🗓️ 2026-05-13</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">After breaking the mysterious "One Wish Willow" to win his crush's heart, a hopeless romantic finds himself ge…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1315772)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg" alt="Minions & Monsters" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Minions & Monsters</div>
-        <div class="card-year">🗓️ 2026-06-24</div>
-        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
-        <div class="card-overview">This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became mov…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1101383)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/fYXqpgPmHMphSF2W30GbTeJVIa5.jpg" alt="The End of Oak Street" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.5</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">The End of Oak Street</div>
-        <div class="card-year">🗓️ 2026-08-12</div>
-        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Mystery</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace u…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1291595)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg" alt="Insidious: Out of the Further" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.5</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Insidious: Out of the Further</div>
-        <div class="card-year">🗓️ 2026-08-19</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Furt…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1003596)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/jzPwsojjFStf5lR5Nm07w2hH56G.jpg" alt="Avengers: Doomsday" loading="lazy">
@@ -1263,17 +1243,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-12-16</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Beloved heroes from three distinct universes are set on a deadly collision course and face an existential thre…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(950028)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/b7Dr8Chzse8VagexAporUu2RtLx.jpg" alt="The Invite" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.4</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">The Invite</div>
-        <div class="card-year">🗓️ 2026-06-25</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">Joe and Angela's marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner par…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1083381)">
       <div class="card-poster-wrap">
@@ -1286,16 +1255,27 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Mystery</span><span class="genre-tag">Science Fiction</span></div>
         <div class="card-overview">A strange doorway appears in the basement of a furniture showroom.…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1493400)">
+    </div><div class="movie-card" onclick="showMovieDetail(950028)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/rS7byWK9cfPfdLeFNlRIaJxH9mN.jpg" alt="Camp Rock 3" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.4</span>
+        <img src="https://image.tmdb.org/t/p/w500/b7Dr8Chzse8VagexAporUu2RtLx.jpg" alt="The Invite" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.4</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Camp Rock 3</div>
-        <div class="card-year">🗓️ 2026-08-13</div>
-        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span></div>
-        <div class="card-overview">When Connect 3 loses their opening act for a major reunion tour, they return to their beloved Camp Rock to dis…</div>
+        <div class="card-title">The Invite</div>
+        <div class="card-year">🗓️ 2026-06-25</div>
+        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
+        <div class="card-overview">Joe and Angela's marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner par…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1315772)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg" alt="Minions & Monsters" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Minions & Monsters</div>
+        <div class="card-year">🗓️ 2026-06-24</div>
+        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
+        <div class="card-overview">This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became mov…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1275779)">
       <div class="card-poster-wrap">
@@ -1319,6 +1299,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
         <div class="card-overview">Sophie Birenbaum is ready for the spotlight as the lead in her high school musical — until she's suddenly faci…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1493400)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/rS7byWK9cfPfdLeFNlRIaJxH9mN.jpg" alt="Camp Rock 3" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.4</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Camp Rock 3</div>
+        <div class="card-year">🗓️ 2026-08-13</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">When Connect 3 loses their opening act for a major reunion tour, they return to their beloved Camp Rock to dis…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1081003)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/1QCWdqzTfh2x9UylVpspIU6QTuM.jpg" alt="Supergirl" loading="lazy">
@@ -1341,6 +1332,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">A family suddenly sealed inside their home must work together to survive against dwindling resources and the o…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1291595)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg" alt="Insidious: Out of the Further" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Insidious: Out of the Further</div>
+        <div class="card-year">🗓️ 2026-08-19</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Furt…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(687163)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg" alt="Project Hail Mary" loading="lazy">
@@ -1351,17 +1353,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-03-15</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is o…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1212763)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/uRxrNXQWkHoENm3nwVOZDYSCx2F.jpg" alt="Evil Dead Burn" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Evil Dead Burn</div>
-        <div class="card-year">🗓️ 2026-07-07</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span></div>
-        <div class="card-overview">After her husband's abrupt death, Alice seeks solace with his remaining family — descendants of a leading rese…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1280738)">
       <div class="card-poster-wrap">
@@ -1374,16 +1365,27 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Crime</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">After a criminal network kidnaps Wang Wei's daughter and the corrupt police refuse to assist him, Wei sets out…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1418582)">
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/y3zqa6qmLz2C2bUImOgYs6JxDNT.jpg" alt="Here the Whole Time" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.3</span>
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Here the Whole Time</div>
-        <div class="card-year">🗓️ 2026-06-18</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">An insecure teenager's vacation plans are ruined by an unexpected visitor: his neighbor and school crush who w…</div>
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(964849)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/e9ALgOANOJbcFpw84MbafK3xvD2.jpg" alt="Nightborn" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.1</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Nightborn</div>
+        <div class="card-year">🗓️ 2026-07-01</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span></div>
+        <div class="card-overview">In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga's joy is overshadowed…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(936075)">
       <div class="card-poster-wrap">
@@ -1605,82 +1607,16 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Adventure</span><span class="genre-tag">Fantasy</span></div>
         <div class="card-overview">In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri fa…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1487864)">
+    </div><div class="movie-card" onclick="showMovieDetail(1228710)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/lP558W6RgDYaQvs9GKNGPUhVOLU.jpg" alt="Nando Between Two Worlds - A Sintonia Film" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.3</span>
+        <img src="https://image.tmdb.org/t/p/w500/7GV5rrUJf0BRUhoh2cyFoeNthlQ.jpg" alt="The Mandalorian and Grogu" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Nando Between Two Worlds - A Sintonia Film</div>
-        <div class="card-year">🗓️ 2026-08-12</div>
-        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span><span class="genre-tag">Crime</span></div>
-        <div class="card-overview">Caught between family life and his obligations to the criminal underworld, Nando faces an impossible choice ab…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1284465)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/92Tsfx7SFafOqWsotvrlJbHyehd.jpg" alt="The Death of Robin Hood" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">The Death of Robin Hood</div>
-        <div class="card-year">🗓️ 2026-06-18</div>
-        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Drama</span><span class="genre-tag">Action</span></div>
-        <div class="card-overview">Grappling with his past after a life of crime and murder, Robin Hood finds himself gravely injured after a bat…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1444466)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/lD3J6zTbWkVtPYuSUuuBwpuKMCO.jpg" alt="Awarapan 2" loading="lazy">
-        <span class="rating-badge" style="background:#e74c3c">⭐ 0.0</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Awarapan 2</div>
-        <div class="card-year">🗓️ 2026-08-14</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">Shivam returns to the crime world, where his path forward demands redemption, love, and sacrifice. As relation…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1169516)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/1JlfUuvvX5xLP2LIDah4JhWUtTx.jpg" alt="Welcome To The Jungle" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.1</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Welcome To The Jungle</div>
-        <div class="card-year">🗓️ 2026-06-25</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Comedy</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">A group of quirky characters gets stuck in a dangerous jungle during a chaotic mission. Filled with confusion,…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1307118)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/bNErActDctl6cdUGw9pnjSCmyhQ.jpg" alt="Soulm8te" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Soulm8te</div>
-        <div class="card-year">🗓️ 2026-07-31</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">After a ruthless tech giant acquires a small robotics company, a grieving engineer is tasked with testing thei…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1314481)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg" alt="The Devil Wears Prada 2" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.1</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">The Devil Wears Prada 2</div>
-        <div class="card-year">🗓️ 2026-04-29</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span></div>
-        <div class="card-overview">Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within.…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1588838)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/7KtjwHzp2EB5N63bZtxVb2gImjf.jpg" alt="To the Max" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.8</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">To the Max</div>
-        <div class="card-year">🗓️ 2026-02-06</div>
-        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">A group of friends bonded by their love for extreme sports discovers BASE jumping in wingsuits — but feeling l…</div>
+        <div class="card-title">The Mandalorian and Grogu</div>
+        <div class="card-year">🗓️ 2026-05-20</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span><span class="genre-tag">Science Fiction</span></div>
+        <div class="card-overview">The evil Empire has fallen, and Imperial warlords remain scattered throughout the galaxy. As the fledgling New…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1170608)">
       <div class="card-poster-wrap">
@@ -1693,27 +1629,27 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Emperor Paul Atreides faces the fallout from his ascent to power as political plots and a galaxy-wide holy war…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1340206)">
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg" alt="Tuner" loading="lazy">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1307118)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/bNErActDctl6cdUGw9pnjSCmyhQ.jpg" alt="Soulm8te" loading="lazy">
         <span class="rating-badge" style="background:#27ae60">⭐ 7.3</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Tuner</div>
-        <div class="card-year">🗓️ 2026-05-21</div>
-        <div class="card-genres"><span class="genre-tag">Crime</span><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">A gifted piano tuner's meticulous skills for tuning pianos lead him to discover an unexpected aptitude for cra…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1564614)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/gnAsZvBygplNpp8PtjoTEYv3VPB.jpg" alt="Leviticus" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.7</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Leviticus</div>
-        <div class="card-year">🗓️ 2026-06-17</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">Two teenage boys must escape a violent entity that takes the form of the person they desire most:  each other.…</div>
+        <div class="card-title">Soulm8te</div>
+        <div class="card-year">🗓️ 2026-07-31</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">After a ruthless tech giant acquires a small robotics company, a grieving engineer is tasked with testing thei…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1612018)">
       <div class="card-poster-wrap">
@@ -1726,16 +1662,38 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Comedy</span><span class="genre-tag">Documentary</span></div>
         <div class="card-overview">The fifth and final installment to Jackass franchise where the crew go on one last insane crusade.…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1122573)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/dQgIcW6Th08kMRf2HBoYWoFE6OD.jpg" alt="In the Grey" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.6</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">In the Grey</div>
+        <div class="card-year">🗓️ 2026-05-13</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">A covert team of elite operatives are living in the shadows. When a ruthless despot steals a billion-dollar fo…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1341138)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg" alt="Spa Weekend" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.0</span>
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.8</span>
       </div>
       <div class="card-info">
         <div class="card-title">Spa Weekend</div>
         <div class="card-year">🗓️ 2026-08-20</div>
         <div class="card-genres"><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibi…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1242332)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/38n0tIc9c1cn5C3IMhjnIFJtwfz.jpg" alt="Normal" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Normal</div>
+        <div class="card-year">🗓️ 2026-04-16</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Crime</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">An unassuming substitute sheriff with a troubled past responds to a bank robbery in a small, sleepy town and u…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1273221)">
       <div class="card-poster-wrap">
@@ -1748,16 +1706,27 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer'…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1122573)">
+    </div><div class="movie-card" onclick="showMovieDetail(1314481)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/dQgIcW6Th08kMRf2HBoYWoFE6OD.jpg" alt="In the Grey" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.6</span>
+        <img src="https://image.tmdb.org/t/p/w500/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg" alt="The Devil Wears Prada 2" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.1</span>
       </div>
       <div class="card-info">
-        <div class="card-title">In the Grey</div>
-        <div class="card-year">🗓️ 2026-05-13</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">A covert team of elite operatives are living in the shadows. When a ruthless despot steals a billion-dollar fo…</div>
+        <div class="card-title">The Devil Wears Prada 2</div>
+        <div class="card-year">🗓️ 2026-04-29</div>
+        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within.…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1632473)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/voT1x4FdnBieu1en3CeKhf7N0n8.jpg" alt="This, That, and Everything in Between" loading="lazy">
+        <span class="rating-badge" style="background:#e74c3c">⭐ 4.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">This, That, and Everything in Between</div>
+        <div class="card-year">🗓️ 2026-08-13</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Family</span></div>
+        <div class="card-overview">A TV writer returns home to her estranged mother, igniting chaos as they navigate painful secrets and the  com…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1226863)">
       <div class="card-poster-wrap">
@@ -1770,27 +1739,16 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Family</span><span class="genre-tag">Comedy</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Having thwarted Bowser's previous plot to marry Princess Peach, Mario and Luigi now face a fresh threat in Bow…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1058424)">
+    </div><div class="movie-card" onclick="showMovieDetail(1391021)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/bcK5naYzzfY0JBCgrPrsrbV6NO1.jpg" alt="Hope" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
+        <img src="https://image.tmdb.org/t/p/w500/wAuGgXjA7GV8NrKfmUKl2AP8vqG.jpg" alt="Once Upon a Time in the Middle East" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 9.2</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Hope</div>
-        <div class="card-year">🗓️ 2026-07-15</div>
-        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Mystery</span><span class="genre-tag">Action</span></div>
-        <div class="card-overview">In the remote South Korean village of Hope Harbor, police chief Bum-seok and officer Sung-ae are called to inv…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(931285)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/hwRdDFIhaEmpRgoki805YvyyjZf.jpg" alt="Mortal Kombat II" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Mortal Kombat II</div>
-        <div class="card-year">🗓️ 2026-05-06</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Fantasy</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">The fan favorite champions—now joined by Johnny Cage himself—are pitted against one another in the ultimate, n…</div>
+        <div class="card-title">Once Upon a Time in the Middle East</div>
+        <div class="card-year">🗓️ 2026-08-08</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">War</span></div>
+        <div class="card-overview">Xu Fu travels to the Middle East to work as a chef in a Chinese restaurant to pay off family debts, where he m…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1481343)">
       <div class="card-poster-wrap">
@@ -1814,16 +1772,60 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Horror</span></div>
         <div class="card-overview">When novelist Ohm Bauman retreats to a remote inn to scatter his parents' ashes, he is consumed by tales of a …</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1130948)">
+    </div><div class="movie-card" onclick="showMovieDetail(1423191)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/tXsTtSgguTsk5J115jokwK55awF.jpg" alt="Rosebush Pruning" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.8</span>
+        <img src="https://image.tmdb.org/t/p/w500/guq5cJ43v0qcMtLqrYHe5P9fgFM.jpg" alt="Resident Evil" loading="lazy">
+        <span class="rating-badge" style="background:#e74c3c">⭐ 0.0</span>
       </div>
       <div class="card-info">
-        <div class="card-title">Rosebush Pruning</div>
-        <div class="card-year">🗓️ 2026-04-23</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">In a Spanish villa, American siblings Jack, Ed, Anna and Robert wallow in isolation and their inherited fortun…</div>
+        <div class="card-title">Resident Evil</div>
+        <div class="card-year">🗓️ 2026-09-16</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span></div>
+        <div class="card-overview">Bryan, a medical courier, unwittingly finds himself fighting for survival as one fateful, horrifying night col…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1408170)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/rAHQviBq8Fxi20hNtHPGLnr4L0f.jpg" alt="Lenin" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.4</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Lenin</div>
+        <div class="card-year">🗓️ 2026-07-10</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
+        <div class="card-overview">In a village trapped by generations of bloodshed, a determined young man dares to challenge the traditions fue…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1233413)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg" alt="Sinners" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Sinners</div>
+        <div class="card-year">🗓️ 2025-04-16</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to di…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1281195)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/y23B9EnC0LDw8zMKlpXJauyLH7k.jpg" alt="Truly Naked" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.9</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Truly Naked</div>
+        <div class="card-year">🗓️ 2026-04-15</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
+        <div class="card-overview">An introverted teen, who has only ever experienced sex through the lens while working for his father’s pornogr…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1327819)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/xjtWQ2CL1mpmMNwuU5HeS4Iuwuu.jpg" alt="Hoppers" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Hoppers</div>
+        <div class="card-year">🗓️ 2026-03-04</div>
+        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
+        <div class="card-overview">Scientists have discovered how to 'hop' human consciousness into lifelike robotic animals, allowing people to …</div>
       </div>
     </div></div>
       <button class="slider-arrow arrow-right" onclick="slideRow('trending-slider', 1)">&#8250;</button>
@@ -1889,6 +1891,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-07-24</div>
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinctio…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1391021)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/wAuGgXjA7GV8NrKfmUKl2AP8vqG.jpg" alt="Once Upon a Time in the Middle East" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 9.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Once Upon a Time in the Middle East</div>
+        <div class="card-year">🗓️ 2026-08-08</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">War</span></div>
+        <div class="card-overview">Xu Fu travels to the Middle East to work as a chef in a Chinese restaurant to pay off family debts, where he m…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(419514)">
       <div class="card-poster-wrap">
@@ -1978,39 +1991,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">A colossal-sized omnibus film bringing together the last two episodes of Attack on Titan in the franchise's fi…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(936075)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Michael</div>
-        <div class="card-year">🗓️ 2026-04-22</div>
-        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
-        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(936075)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Michael</div>
-        <div class="card-year">🗓️ 2026-04-22</div>
-        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
-        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(936075)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Michael</div>
-        <div class="card-year">🗓️ 2026-04-22</div>
-        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
-        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(687163)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg" alt="Project Hail Mary" loading="lazy">
@@ -2021,6 +2001,61 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-03-15</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is o…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(936075)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg" alt="Michael" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.7</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Michael</div>
+        <div class="card-year">🗓️ 2026-04-22</div>
+        <div class="card-genres"><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
+        <div class="card-overview">The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyon…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(129)">
       <div class="card-poster-wrap">
@@ -2330,6 +2365,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Action</span><span class="genre-tag">Science Fiction</span></div>
         <div class="card-overview">In the aftermath of the Fourth Impact, stranded without their Evangelions, Shinji, Asuka and Rei find refuge i…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1327819)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/xjtWQ2CL1mpmMNwuU5HeS4Iuwuu.jpg" alt="Hoppers" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Hoppers</div>
+        <div class="card-year">🗓️ 2026-03-04</div>
+        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
+        <div class="card-overview">Scientists have discovered how to 'hop' human consciousness into lifelike robotic animals, allowing people to …</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1363974)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/oblkRIWuKTF46CsnLhBiE7Otn3z.jpg" alt="That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea" loading="lazy">
@@ -2373,17 +2419,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2024-06-28</div>
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Drama</span></div>
         <div class="card-overview">Popular, outgoing Fujino is celebrated by her classmates for her funny comics in the class newspaper. One day,…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1058424)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/bcK5naYzzfY0JBCgrPrsrbV6NO1.jpg" alt="Hope" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.2</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Hope</div>
-        <div class="card-year">🗓️ 2026-07-15</div>
-        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Mystery</span><span class="genre-tag">Action</span></div>
-        <div class="card-overview">In the remote South Korean village of Hope Harbor, police chief Bum-seok and officer Sung-ae are called to inv…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1327819)">
       <div class="card-poster-wrap">
@@ -2583,17 +2618,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
         <div class="card-overview">Rizwan Khan, a Muslim from the Borivali section of Mumbai, has Asperger's syndrome. He marries a Hindu single …</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(673)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg" alt="Harry Potter and the Prisoner of Azkaban" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 8.0</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Harry Potter and the Prisoner of Azkaban</div>
-        <div class="card-year">🗓️ 2004-05-31</div>
-        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Fantasy</span></div>
-        <div class="card-overview">Harry Potter's life is in danger once more as dangerous wizard Sirius Black has escaped from Azkaban Prison an…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1084244)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg" alt="Toy Story 5" loading="lazy">
@@ -2605,16 +2629,16 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Family</span><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the …</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1630409)">
+    </div><div class="movie-card" onclick="showMovieDetail(673)">
       <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/qADBUb5ybrkRVGZEFF8Z4RuOwys.jpg" alt="The Debt Collector" loading="lazy">
+        <img src="https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg" alt="Harry Potter and the Prisoner of Azkaban" loading="lazy">
         <span class="rating-badge" style="background:#27ae60">⭐ 8.0</span>
       </div>
       <div class="card-info">
-        <div class="card-title">The Debt Collector</div>
-        <div class="card-year">🗓️ 2026-07-20</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span><span class="genre-tag">Crime</span></div>
-        <div class="card-overview">Tormented by past mistakes and a terminal diagnosis, an ex-debt collector returns to the underworld to protect…</div>
+        <div class="card-title">Harry Potter and the Prisoner of Azkaban</div>
+        <div class="card-year">🗓️ 2004-05-31</div>
+        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Fantasy</span></div>
+        <div class="card-overview">Harry Potter's life is in danger once more as dangerous wizard Sirius Black has escaped from Azkaban Prison an…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(20453)">
       <div class="card-poster-wrap">
@@ -2626,6 +2650,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2009-12-23</div>
         <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">Rascal. Joker. Dreamer. Genius... You've never met a college student quite like "Rancho." From the moment he a…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1630409)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/qADBUb5ybrkRVGZEFF8Z4RuOwys.jpg" alt="The Debt Collector" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 8.0</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">The Debt Collector</div>
+        <div class="card-year">🗓️ 2026-07-20</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span><span class="genre-tag">Crime</span></div>
+        <div class="card-overview">Tormented by past mistakes and a terminal diagnosis, an ex-debt collector returns to the underworld to protect…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1084244)">
       <div class="card-poster-wrap">
@@ -2847,28 +2882,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Fantasy</span></div>
         <div class="card-overview">Harry Potter has lived under the stairs at his aunt and uncle's house his whole life. But on his 11th birthday…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(969681)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/iPOn6DinuVyLY17YM9mKuPofV08.jpg" alt="Spider-Man: Brand New Day" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Spider-Man: Brand New Day</div>
-        <div class="card-year">🗓️ 2026-07-29</div>
-        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1212763)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/uRxrNXQWkHoENm3nwVOZDYSCx2F.jpg" alt="Evil Dead Burn" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Evil Dead Burn</div>
-        <div class="card-year">🗓️ 2026-07-07</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span></div>
-        <div class="card-overview">After her husband's abrupt death, Alice seeks solace with his remaining family — descendants of a leading rese…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(37797)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/5FROLD8zpWFs9ja7aYho1uOMJHg.jpg" alt="Whisper of the Heart" loading="lazy">
@@ -2913,6 +2926,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(969681)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/iPOn6DinuVyLY17YM9mKuPofV08.jpg" alt="Spider-Man: Brand New Day" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Spider-Man: Brand New Day</div>
+        <div class="card-year">🗓️ 2026-07-29</div>
+        <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span></div>
+        <div class="card-overview">Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(360814)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/cJRPOLEexI7qp2DKtFfCh7YaaUG.jpg" alt="Dangal" loading="lazy">
@@ -2934,17 +2958,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-07-07</div>
         <div class="card-genres"><span class="genre-tag">Horror</span></div>
         <div class="card-overview">After her husband's abrupt death, Alice seeks solace with his remaining family — descendants of a leading rese…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(931285)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/hwRdDFIhaEmpRgoki805YvyyjZf.jpg" alt="Mortal Kombat II" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.9</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Mortal Kombat II</div>
-        <div class="card-year">🗓️ 2026-05-06</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Fantasy</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">The fan favorite champions—now joined by Johnny Cage himself—are pitted against one another in the ultimate, n…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(585)">
       <div class="card-poster-wrap">
@@ -3132,6 +3145,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2008-07-19</div>
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Fantasy</span><span class="genre-tag">Family</span></div>
         <div class="card-overview">When Sosuke, a young boy who lives on a clifftop overlooking the sea, rescues a stranded goldfish named Ponyo,…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1341138)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg" alt="Spa Weekend" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.8</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Spa Weekend</div>
+        <div class="card-year">🗓️ 2026-08-20</div>
+        <div class="card-genres"><span class="genre-tag">Comedy</span></div>
+        <div class="card-overview">Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibi…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1308767)">
       <div class="card-poster-wrap">
@@ -3529,6 +3553,39 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span><span class="genre-tag">Science Fiction</span></div>
         <div class="card-overview">The evil Empire has fallen, and Imperial warlords remain scattered throughout the galaxy. As the fledgling New…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1228710)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/7GV5rrUJf0BRUhoh2cyFoeNthlQ.jpg" alt="The Mandalorian and Grogu" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">The Mandalorian and Grogu</div>
+        <div class="card-year">🗓️ 2026-05-20</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Adventure</span><span class="genre-tag">Science Fiction</span></div>
+        <div class="card-overview">The evil Empire has fallen, and Imperial warlords remain scattered throughout the galaxy. As the fledgling New…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1233413)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg" alt="Sinners" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Sinners</div>
+        <div class="card-year">🗓️ 2025-04-16</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to di…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1315772)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg" alt="Minions & Monsters" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Minions & Monsters</div>
+        <div class="card-year">🗓️ 2026-06-24</div>
+        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
+        <div class="card-overview">This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became mov…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1213898)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/AmrCgmDPEJ6QxllS1rhjYwgO9Wb.jpg" alt="Border 2" loading="lazy">
@@ -3550,17 +3607,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2014-12-06</div>
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Romance</span><span class="genre-tag">Animation</span></div>
         <div class="card-overview">Two years after the events of the Fourth Great Ninja War, the moon that Hagoromo Otsutsuki created long ago to…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1315772)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg" alt="Minions & Monsters" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.5</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Minions & Monsters</div>
-        <div class="card-year">🗓️ 2026-06-24</div>
-        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Animation</span><span class="genre-tag">Comedy</span></div>
-        <div class="card-overview">This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became mov…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1315772)">
       <div class="card-poster-wrap">
@@ -3760,17 +3806,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Crime</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">In the early 2000s, an undercover operative infiltrates Karachi's underworld, breaking into its inner circle t…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1418582)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/y3zqa6qmLz2C2bUImOgYs6JxDNT.jpg" alt="Here the Whole Time" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Here the Whole Time</div>
-        <div class="card-year">🗓️ 2026-06-18</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">An insecure teenager's vacation plans are ruined by an unexpected visitor: his neighbor and school crush who w…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1582770)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/ptTwQES14pr5c3aZvJg56YlYgb1.jpg" alt="Dhurandhar: The Revenge" loading="lazy">
@@ -3837,17 +3872,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">War</span></div>
         <div class="card-overview">A wounded American soldier fights to survive behind enemy lines during WWII's Battle of the Bulge against the …</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1340206)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg" alt="Tuner" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Tuner</div>
-        <div class="card-year">🗓️ 2026-05-21</div>
-        <div class="card-genres"><span class="genre-tag">Crime</span><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">A gifted piano tuner's meticulous skills for tuning pianos lead him to discover an unexpected aptitude for cra…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1307118)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/bNErActDctl6cdUGw9pnjSCmyhQ.jpg" alt="Soulm8te" loading="lazy">
@@ -3891,6 +3915,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-07-31</div>
         <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">After a ruthless tech giant acquires a small robotics company, a grieving engineer is tasked with testing thei…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1242332)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/38n0tIc9c1cn5C3IMhjnIFJtwfz.jpg" alt="Normal" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.2</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Normal</div>
+        <div class="card-year">🗓️ 2026-04-16</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Crime</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">An unassuming substitute sheriff with a troubled past responds to a bank robbery in a small, sleepy town and u…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(330457)">
       <div class="card-poster-wrap">
@@ -4002,6 +4037,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">A group of international passengers on a flight from Los Angeles to Shanghai is forced to make an emergency la…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1288445)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/pVMxkaViouALWwc1EdZBaiZJTxJ.jpg" alt="Mutiny" loading="lazy">
+        <span class="rating-badge" style="background:#27ae60">⭐ 7.1</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Mutiny</div>
+        <div class="card-year">🗓️ 2026-08-19</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
+        <div class="card-overview">After witnessing his billionaire boss' murder and being framed for the crime, Cole Reed boards a cargo ship on…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1083381)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg" alt="Backrooms" loading="lazy">
@@ -4089,17 +4135,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2019-07-12</div>
         <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Drama</span><span class="genre-tag">Family</span></div>
         <div class="card-overview">Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the king…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1288445)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/aAnTt6KpmbbHbd6xH3FQFlppZjc.jpg" alt="Mutiny" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.1</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Mutiny</div>
-        <div class="card-year">🗓️ 2026-08-19</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">After witnessing his billionaire boss' murder and being framed for the crime, Cole Reed boards a cargo ship on…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1288445)">
       <div class="card-poster-wrap">
@@ -4221,17 +4256,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-08-13</div>
         <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Music</span><span class="genre-tag">Drama</span></div>
         <div class="card-overview">Sophie Birenbaum is ready for the spotlight as the lead in her high school musical — until she's suddenly faci…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1341138)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg" alt="Spa Weekend" loading="lazy">
-        <span class="rating-badge" style="background:#27ae60">⭐ 7.0</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Spa Weekend</div>
-        <div class="card-year">🗓️ 2026-08-20</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span></div>
-        <div class="card-overview">Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibi…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1504358)">
       <div class="card-poster-wrap">
@@ -4475,6 +4499,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
         <div class="card-overview">An introverted teen, who has only ever experienced sex through the lens while working for his father’s pornogr…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1281195)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/y23B9EnC0LDw8zMKlpXJauyLH7k.jpg" alt="Truly Naked" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.9</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Truly Naked</div>
+        <div class="card-year">🗓️ 2026-04-15</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
+        <div class="card-overview">An introverted teen, who has only ever experienced sex through the lens while working for his father’s pornogr…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1284041)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/6JU7E8Vv2M11egkctWVOScxWR75.jpg" alt="The Last House" loading="lazy">
@@ -4574,17 +4609,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Romance</span></div>
         <div class="card-overview">Two love-starved strangers crash into each other on the one night of the year when single people are allowed t…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1130948)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/tXsTtSgguTsk5J115jokwK55awF.jpg" alt="Rosebush Pruning" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.8</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Rosebush Pruning</div>
-        <div class="card-year">🗓️ 2026-04-23</div>
-        <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span></div>
-        <div class="card-overview">In a Spanish villa, American siblings Jack, Ed, Anna and Robert wallow in isolation and their inherited fortun…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1081003)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/1QCWdqzTfh2x9UylVpspIU6QTuM.jpg" alt="Supergirl" loading="lazy">
@@ -4617,17 +4641,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2006-03-29</div>
         <div class="card-genres"><span class="genre-tag">Animation</span><span class="genre-tag">Family</span><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">Diego, Manny and Sid return in this sequel to the hit animated movie Ice Age. This time around, the deep freez…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1564614)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/gnAsZvBygplNpp8PtjoTEYv3VPB.jpg" alt="Leviticus" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.7</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Leviticus</div>
-        <div class="card-year">🗓️ 2026-06-17</div>
-        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">Two teenage boys must escape a violent entity that takes the form of the person they desire most:  each other.…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1564614)">
       <div class="card-poster-wrap">
@@ -4838,6 +4851,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Adventure</span><span class="genre-tag">Fantasy</span></div>
         <div class="card-overview">A midlife-crisis burdened Shrek, longing for the days when he felt like a real ogre, makes a pact with magic d…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1408170)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/rAHQviBq8Fxi20hNtHPGLnr4L0f.jpg" alt="Lenin" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.4</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Lenin</div>
+        <div class="card-year">🗓️ 2026-07-10</div>
+        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
+        <div class="card-overview">In a village trapped by generations of bloodshed, a determined young man dares to challenge the traditions fue…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1413976)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/6LmJD3Wohe0g4U62wgi7RyJqfE4.jpg" alt="Citizen Vigilante" loading="lazy">
@@ -4925,17 +4949,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-08-19</div>
         <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Furt…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1284465)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/92Tsfx7SFafOqWsotvrlJbHyehd.jpg" alt="The Death of Robin Hood" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 6.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">The Death of Robin Hood</div>
-        <div class="card-year">🗓️ 2026-06-18</div>
-        <div class="card-genres"><span class="genre-tag">Adventure</span><span class="genre-tag">Drama</span><span class="genre-tag">Action</span></div>
-        <div class="card-overview">Grappling with his past after a life of crime and murder, Robin Hood finds himself gravely injured after a bat…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1284465)">
       <div class="card-poster-wrap">
@@ -5058,6 +5071,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Horror</span></div>
         <div class="card-overview">In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga's joy is overshadowed…</div>
       </div>
+    </div><div class="movie-card" onclick="showMovieDetail(964849)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/e9ALgOANOJbcFpw84MbafK3xvD2.jpg" alt="Nightborn" loading="lazy">
+        <span class="rating-badge" style="background:#f39c12">⭐ 6.1</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Nightborn</div>
+        <div class="card-year">🗓️ 2026-07-01</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span></div>
+        <div class="card-overview">In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga's joy is overshadowed…</div>
+      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1108427)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/zKVgiv5qHCvCLT4A2ymJi5QeXDH.jpg" alt="Moana" loading="lazy">
@@ -5160,24 +5184,13 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
     </div><div class="movie-card" onclick="showMovieDetail(1392469)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/oIQmtByV1LtEQSwM4EpdLTyoSlM.jpg" alt="Cocktail 2" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.9</span>
+        <span class="rating-badge" style="background:#f39c12">⭐ 5.8</span>
       </div>
       <div class="card-info">
         <div class="card-title">Cocktail 2</div>
         <div class="card-year">🗓️ 2026-06-19</div>
         <div class="card-genres"><span class="genre-tag">Romance</span><span class="genre-tag">Comedy</span></div>
         <div class="card-overview">A vacation in Sicily forces longtime partners Diya and Kunal to question their love and commitment after they …</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1588838)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/7KtjwHzp2EB5N63bZtxVb2gImjf.jpg" alt="To the Max" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.8</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">To the Max</div>
-        <div class="card-year">🗓️ 2026-02-06</div>
-        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">A group of friends bonded by their love for extreme sports discovers BASE jumping in wingsuits — but feeling l…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1484913)">
       <div class="card-poster-wrap">
@@ -5322,17 +5335,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span><span class="genre-tag">Crime</span></div>
         <div class="card-overview">Caught between family life and his obligations to the criminal underworld, Nando faces an impossible choice ab…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1487864)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/lP558W6RgDYaQvs9GKNGPUhVOLU.jpg" alt="Nando Between Two Worlds - A Sintonia Film" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.3</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Nando Between Two Worlds - A Sintonia Film</div>
-        <div class="card-year">🗓️ 2026-08-12</div>
-        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Thriller</span><span class="genre-tag">Crime</span></div>
-        <div class="card-overview">Caught between family life and his obligations to the criminal underworld, Nando faces an impossible choice ab…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1469342)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/kiFacg75KVjy0AM3S4QmbPas8zL.jpg" alt="Her Private Hell" loading="lazy">
@@ -5354,17 +5356,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-07-23</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Horror</span><span class="genre-tag">Thriller</span></div>
         <div class="card-overview">When a mysterious mist engulfs a futuristic metropolis, unleashing a deadly and elusive entity, a troubled you…</div>
-      </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1169516)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/1JlfUuvvX5xLP2LIDah4JhWUtTx.jpg" alt="Welcome To The Jungle" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.1</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Welcome To The Jungle</div>
-        <div class="card-year">🗓️ 2026-06-25</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Comedy</span><span class="genre-tag">Adventure</span></div>
-        <div class="card-overview">A group of quirky characters gets stuck in a dangerous jungle during a chaotic mission. Filled with confusion,…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1169516)">
       <div class="card-poster-wrap">
@@ -5409,6 +5400,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-08-03</div>
         <div class="card-genres"><span class="genre-tag">Horror</span></div>
         <div class="card-overview">An idyllic summer town descends into madness when an ice cream man serves kids sweet delights with horrifying …</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1632473)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/voT1x4FdnBieu1en3CeKhf7N0n8.jpg" alt="This, That, and Everything in Between" loading="lazy">
+        <span class="rating-badge" style="background:#e74c3c">⭐ 4.5</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">This, That, and Everything in Between</div>
+        <div class="card-year">🗓️ 2026-08-13</div>
+        <div class="card-genres"><span class="genre-tag">Drama</span><span class="genre-tag">Family</span></div>
+        <div class="card-overview">A TV writer returns home to her estranged mother, igniting chaos as they navigate painful secrets and the  com…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1632473)">
       <div class="card-poster-wrap">
@@ -5509,17 +5511,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-genres"><span class="genre-tag">Comedy</span><span class="genre-tag">Adventure</span><span class="genre-tag">Family</span></div>
         <div class="card-overview">After Acme products fail him one too many times in his dogged pursuit of the Roadrunner, Wile E. Coyote decide…</div>
       </div>
-    </div><div class="movie-card" onclick="showMovieDetail(1444466)">
-      <div class="card-poster-wrap">
-        <img src="https://image.tmdb.org/t/p/w500/lD3J6zTbWkVtPYuSUuuBwpuKMCO.jpg" alt="Awarapan 2" loading="lazy">
-        <span class="rating-badge" style="background:#e74c3c">⭐ 0.0</span>
-      </div>
-      <div class="card-info">
-        <div class="card-title">Awarapan 2</div>
-        <div class="card-year">🗓️ 2026-08-14</div>
-        <div class="card-genres"><span class="genre-tag">Action</span><span class="genre-tag">Drama</span><span class="genre-tag">Romance</span></div>
-        <div class="card-overview">Shivam returns to the crime world, where his path forward demands redemption, love, and sacrifice. As relation…</div>
-      </div>
     </div><div class="movie-card" onclick="showMovieDetail(1170608)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/d43fvHQsIMa4kpyhKXw0haEJIvI.jpg" alt="Dune: Part Three" loading="lazy">
@@ -5530,6 +5521,17 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
         <div class="card-year">🗓️ 2026-12-15</div>
         <div class="card-genres"><span class="genre-tag">Science Fiction</span><span class="genre-tag">Adventure</span></div>
         <div class="card-overview">Emperor Paul Atreides faces the fallout from his ascent to power as political plots and a galaxy-wide holy war…</div>
+      </div>
+    </div><div class="movie-card" onclick="showMovieDetail(1423191)">
+      <div class="card-poster-wrap">
+        <img src="https://image.tmdb.org/t/p/w500/guq5cJ43v0qcMtLqrYHe5P9fgFM.jpg" alt="Resident Evil" loading="lazy">
+        <span class="rating-badge" style="background:#e74c3c">⭐ 0.0</span>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Resident Evil</div>
+        <div class="card-year">🗓️ 2026-09-16</div>
+        <div class="card-genres"><span class="genre-tag">Horror</span><span class="genre-tag">Science Fiction</span></div>
+        <div class="card-overview">Bryan, a medical courier, unwittingly finds himself fighting for survival as one fateful, horrifying night col…</div>
       </div>
     </div><div class="movie-card" onclick="showMovieDetail(1598766)">
       <div class="card-poster-wrap">
@@ -6498,7 +6500,7 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
     </div><div class="movie-card" onclick="showMovieDetail(1392469)">
       <div class="card-poster-wrap">
         <img src="https://image.tmdb.org/t/p/w500/oIQmtByV1LtEQSwM4EpdLTyoSlM.jpg" alt="Cocktail 2" loading="lazy">
-        <span class="rating-badge" style="background:#f39c12">⭐ 5.9</span>
+        <span class="rating-badge" style="background:#f39c12">⭐ 5.8</span>
       </div>
       <div class="card-info">
         <div class="card-title">Cocktail 2</div>
@@ -8709,26 +8711,26 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 
 <script>
 window.movieDataMap = {};
-window.movieDataMap[1288445]={id:1288445,title:"Mutiny",overview:"After witnessing his billionaire boss\' murder and being framed for the crime, Cole Reed boards a cargo ship on a one-man crusade to avenge his boss\' death only to discover an international conspiracy.",vote_average:7.089,release_date:"2026-08-19",poster_path:"/aAnTt6KpmbbHbd6xH3FQFlppZjc.jpg",backdrop_path:"/xYro90dW4z7es4JG1vo1bmZ0lUN.jpg",original_language:"en",genre_ids:[28, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[969681]={id:969681,title:"Spider-Man: Brand New Day",overview:"Fighting crime full-time as Spider-Man in a world that doesn\'t remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",vote_average:7.9,release_date:"2026-07-29",poster_path:"/iPOn6DinuVyLY17YM9mKuPofV08.jpg",backdrop_path:"/7iwUUcKURMT7aKfCwMy6YnGtchD.jpg",original_language:"en",genre_ids:[878, 28, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1084244]={id:1084244,title:"Toy Story 5",overview:"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang\'s jobs become exponentially harder when they have to go head to head with the all-new threat to playtime.",vote_average:8.004,release_date:"2026-06-17",poster_path:"/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",backdrop_path:"/8sSKdEmlmqF4kJUd28SqthXC4yZ.jpg",original_language:"en",genre_ids:[16, 10751, 35, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1368337]={id:1368337,title:"The Odyssey",overview:"Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, and trials that stretch both his cunning and his humanity to the breaking point.",vote_average:7.989,release_date:"2026-07-15",poster_path:"/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",backdrop_path:"/r57L2UBLPKcHdZQYg8tagv9XqK2.jpg",original_language:"en",genre_ids:[12, 28, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1288445]={id:1288445,title:"Mutiny",overview:"After witnessing his billionaire boss\' murder and being framed for the crime, Cole Reed boards a cargo ship on a one-man crusade to avenge his boss\' death only to discover an international conspiracy.",vote_average:7.1,release_date:"2026-08-19",poster_path:"/pVMxkaViouALWwc1EdZBaiZJTxJ.jpg",backdrop_path:"/frG3IO5kCrnyXDt1q9x4JtToSw3.jpg",original_language:"en",genre_ids:[28, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[969681]={id:969681,title:"Spider-Man: Brand New Day",overview:"Fighting crime full-time as Spider-Man in a world that doesn\'t remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",vote_average:7.888,release_date:"2026-07-29",poster_path:"/iPOn6DinuVyLY17YM9mKuPofV08.jpg",backdrop_path:"/7iwUUcKURMT7aKfCwMy6YnGtchD.jpg",original_language:"en",genre_ids:[878, 28, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1339713]={id:1339713,title:"Obsession",overview:"After breaking the mysterious \"One Wish Willow\" to win his crush\'s heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinister price.",vote_average:8.229,release_date:"2026-05-13",poster_path:"/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",backdrop_path:"/rZfmzpixLKLR3Hg2u0WgC7XLFl8.jpg",original_language:"en",genre_ids:[27, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1315772]={id:1315772,title:"Minions & Monsters",overview:"This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to try and save the planet from the mayhem they had just created.",vote_average:7.499,release_date:"2026-06-24",poster_path:"/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg",backdrop_path:"/kkcwhgSFd81QDlXo8ytrpHPQjhy.jpg",original_language:"en",genre_ids:[12, 16, 35, 10751, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1101383]={id:1101383,title:"The End of Oak Street",overview:"After a mysterious cosmic event rips Oak Street from suburbia and transports their neighborhood to someplace unknown, the Platt family soon discovers that their very survival depends on them sticking together as they navigate their now unrecognizable surroundings.",vote_average:6.5,release_date:"2026-08-12",poster_path:"/fYXqpgPmHMphSF2W30GbTeJVIa5.jpg",backdrop_path:"/b9q9VmbXDvJmTziRqkwdEmFdwhr.jpg",original_language:"en",genre_ids:[878, 9648, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1291595]={id:1291595,title:"Insidious: Out of the Further",overview:"Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",vote_average:6.536,release_date:"2026-08-19",poster_path:"/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg",backdrop_path:"/hD8y787ciNWQ2bn396YrSsOIzdN.jpg",original_language:"en",genre_ids:[27, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1084244]={id:1084244,title:"Toy Story 5",overview:"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang\'s jobs become exponentially harder when they have to go head to head with the all-new threat to playtime.",vote_average:8.012,release_date:"2026-06-17",poster_path:"/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",backdrop_path:"/8sSKdEmlmqF4kJUd28SqthXC4yZ.jpg",original_language:"en",genre_ids:[16, 10751, 35, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1368337]={id:1368337,title:"The Odyssey",overview:"Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, and trials that stretch both his cunning and his humanity to the breaking point.",vote_average:7.989,release_date:"2026-07-15",poster_path:"/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",backdrop_path:"/r57L2UBLPKcHdZQYg8tagv9XqK2.jpg",original_language:"en",genre_ids:[12, 28, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1003596]={id:1003596,title:"Avengers: Doomsday",overview:"Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they\'ve ever encountered.",vote_average:0.0,release_date:"2026-12-16",poster_path:"/jzPwsojjFStf5lR5Nm07w2hH56G.jpg",backdrop_path:"/s4v0UX1anfXm0UvloLsTTJ4v222.jpg",original_language:"en",genre_ids:[878, 28, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[950028]={id:950028,title:"The Invite",overview:"Joe and Angela\'s marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner party, the night spirals into unexpected places. Have they reignited the spark or lit the match that burns it all down?",vote_average:7.382,release_date:"2026-06-25",poster_path:"/b7Dr8Chzse8VagexAporUu2RtLx.jpg",backdrop_path:"/lEwqBGNR65KZv6Ej5ufcmhZu2y2.jpg",original_language:"en",genre_ids:[35, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1083381]={id:1083381,title:"Backrooms",overview:"A strange doorway appears in the basement of a furniture showroom.",vote_average:7.1,release_date:"2026-05-27",poster_path:"/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",backdrop_path:"/dqmMWNWfLnExDRpMtIMqI97GQFR.jpg",original_language:"en",genre_ids:[27, 9648, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1493400]={id:1493400,title:"Camp Rock 3",overview:"When Connect 3 loses their opening act for a major reunion tour, they return to their beloved Camp Rock to discover the next big thing. As campers vie for the chance to open for their favorite band, tensions rise and friendships are tested - leading to unexpected alliances, revelations, and romances.",vote_average:6.361,release_date:"2026-08-13",poster_path:"/rS7byWK9cfPfdLeFNlRIaJxH9mN.jpg",backdrop_path:"/vJb3fniB8E0JnSMr1tDyIsb6gPi.jpg",original_language:"en",genre_ids:[10402, 35, 18, 10770, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[950028]={id:950028,title:"The Invite",overview:"Joe and Angela\'s marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner party, the night spirals into unexpected places. Have they reignited the spark or lit the match that burns it all down?",vote_average:7.377,release_date:"2026-06-25",poster_path:"/b7Dr8Chzse8VagexAporUu2RtLx.jpg",backdrop_path:"/lEwqBGNR65KZv6Ej5ufcmhZu2y2.jpg",original_language:"en",genre_ids:[35, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1315772]={id:1315772,title:"Minions & Monsters",overview:"This is the rambunctious, ridiculous and totally true story of how the Minions conquered Hollywood, became movie stars, lost everything, unleashed monsters onto the world and then banded together to try and save the planet from the mayhem they had just created.",vote_average:7.5,release_date:"2026-06-24",poster_path:"/4LwvU9SZc8QQzW1X1FAPhNbXnEU.jpg",backdrop_path:"/kkcwhgSFd81QDlXo8ytrpHPQjhy.jpg",original_language:"en",genre_ids:[12, 16, 35, 10751, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1275779]={id:1275779,title:"Disclosure Day",overview:"A cybersecurity expert becomes a whistleblower after uncovering secrets about aliens, putting him on the run from a corporation. Meanwhile, a meteorologist experiencing strange phenomena joins forces with him to prove there\'s life beyond our understanding.",vote_average:7.459,release_date:"2026-06-10",poster_path:"/AnJ8IQJI23hNpYXVNaythu061Ru.jpg",backdrop_path:"/flxau5Iu7bChQHsESqvGZ3FQRaI.jpg",original_language:"en",genre_ids:[878, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1504358]={id:1504358,title:"Don\'t Say Good Luck",overview:"Sophie Birenbaum is ready for the spotlight as the lead in her high school musical — until she\'s suddenly facing more drama at home than on the stage.",vote_average:7.0,release_date:"2026-08-13",poster_path:"/dgTKahWonzVLeN8Lm22WR2S7D0A.jpg",backdrop_path:"/yzdMGn8IRHSGuV8AIzw19wkRU2W.jpg",original_language:"en",genre_ids:[35, 10402, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1493400]={id:1493400,title:"Camp Rock 3",overview:"When Connect 3 loses their opening act for a major reunion tour, they return to their beloved Camp Rock to discover the next big thing. As campers vie for the chance to open for their favorite band, tensions rise and friendships are tested - leading to unexpected alliances, revelations, and romances.",vote_average:6.361,release_date:"2026-08-13",poster_path:"/rS7byWK9cfPfdLeFNlRIaJxH9mN.jpg",backdrop_path:"/vJb3fniB8E0JnSMr1tDyIsb6gPi.jpg",original_language:"en",genre_ids:[10402, 35, 18, 10770, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1081003]={id:1081003,title:"Supergirl",overview:"When an unexpected and ruthless adversary strikes too close to home, Kara Zor-El, aka Supergirl, reluctantly joins forces with an unlikely companion on an epic, interstellar journey of vengeance and justice.",vote_average:6.75,release_date:"2026-06-24",poster_path:"/1QCWdqzTfh2x9UylVpspIU6QTuM.jpg",backdrop_path:"/54KIfdTEzOliHDKx0OkzYGqAICx.jpg",original_language:"en",genre_ids:[28, 12, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1284041]={id:1284041,title:"The Last House",overview:"A family suddenly sealed inside their home must work together to survive against dwindling resources and the ominous threat keeping them trapped.",vote_average:6.91,release_date:"2026-08-06",poster_path:"/6JU7E8Vv2M11egkctWVOScxWR75.jpg",backdrop_path:"/1RhfevWmWCVHtEqxWBEjPOC5KG1.jpg",original_language:"en",genre_ids:[27, 878, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[687163]={id:687163,title:"Project Hail Mary",overview:"Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction.",vote_average:8.652,release_date:"2026-03-15",poster_path:"/yihdXomYb5kTeSivtFndMy5iDmf.jpg",backdrop_path:"/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",original_language:"en",genre_ids:[878, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1212763]={id:1212763,title:"Evil Dead Burn",overview:"After her husband\'s abrupt death, Alice seeks solace with his remaining family — descendants of a leading researcher on demonic possession. As her in-laws transform one by one into creatures that feed on fear, she comes to discover that the vows she took in life survive even in death.",vote_average:7.9,release_date:"2026-07-07",poster_path:"/uRxrNXQWkHoENm3nwVOZDYSCx2F.jpg",backdrop_path:"/o0jkkpcN81QqSl8DMLScBCXyUH9.jpg",original_language:"en",genre_ids:[27],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1280738]={id:1280738,title:"The Furious",overview:"After a criminal network kidnaps Wang Wei\'s daughter and the corrupt police refuse to assist him, Wei sets out on his own to locate her. Navin, a tenacious journalist whose wife has mysteriously vanished, is his only ally. In this explosive martial arts showdown, the unlikely duo fights the kidnappers ruthlessly driven by a furious vengeance.",vote_average:8.107,release_date:"2026-06-10",poster_path:"/zP19YO60jwEsfKd5Qf1UvA5uJu8.jpg",backdrop_path:"/9XwQphZxNJgGASfjL58mhIkJJpf.jpg",original_language:"zh",genre_ids:[28, 80, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1418582]={id:1418582,title:"Here the Whole Time",overview:"An insecure teenager\'s vacation plans are ruined by an unexpected visitor: his neighbor and school crush who will spend two weeks sleeping at his house. The days that promised peace, tranquility and epic series marathons end up bringing a whirlwind of feelings and unresolved issues.",vote_average:7.3,release_date:"2026-06-18",poster_path:"/y3zqa6qmLz2C2bUImOgYs6JxDNT.jpg",backdrop_path:"/wiIFKSEZkKgmoI1ylsrbqvRxu1S.jpg",original_language:"pt",genre_ids:[35, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1291595]={id:1291595,title:"Insidious: Out of the Further",overview:"Gemma, a young mother raising her daughter in the house she grew up in, discovers she can travel into The Further, where she possesses an ability to bring what lives there back to the real world.",vote_average:6.536,release_date:"2026-08-19",poster_path:"/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg",backdrop_path:"/hD8y787ciNWQ2bn396YrSsOIzdN.jpg",original_language:"en",genre_ids:[27, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[687163]={id:687163,title:"Project Hail Mary",overview:"Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction.",vote_average:8.7,release_date:"2026-03-15",poster_path:"/yihdXomYb5kTeSivtFndMy5iDmf.jpg",backdrop_path:"/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",original_language:"en",genre_ids:[878, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1280738]={id:1280738,title:"The Furious",overview:"After a criminal network kidnaps Wang Wei\'s daughter and the corrupt police refuse to assist him, Wei sets out on his own to locate her. Navin, a tenacious journalist whose wife has mysteriously vanished, is his only ally. In this explosive martial arts showdown, the unlikely duo fights the kidnappers ruthlessly driven by a furious vengeance.",vote_average:8.114,release_date:"2026-06-10",poster_path:"/zP19YO60jwEsfKd5Qf1UvA5uJu8.jpg",backdrop_path:"/9XwQphZxNJgGASfjL58mhIkJJpf.jpg",original_language:"zh",genre_ids:[28, 80, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[936075]={id:936075,title:"Michael",overview:"The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the Jackson Five, to the visionary artist whose creative ambition fueled a relentless pursuit to become the biggest entertainer in the world, highlighting both his life off-stage and some of the most iconic performances from his early solo career.",vote_average:8.671,release_date:"2026-04-22",poster_path:"/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg",backdrop_path:"/ufSwlnECLoUbBjPrFqEQcWBzHwc.jpg",original_language:"en",genre_ids:[10402, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[964849]={id:964849,title:"Nightborn",overview:"In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga\'s joy is overshadowed by a chilling suspicion about their newborn, unbeknownst to Jon, causing a rift as she alone grapples with the disturbing truth.",vote_average:6.1,release_date:"2026-07-01",poster_path:"/e9ALgOANOJbcFpw84MbafK3xvD2.jpg",backdrop_path:"/jVeYae744cR2ogx9ShQ3qXOcRiZ.jpg",original_language:"fi",genre_ids:[27],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[936075]={id:936075,title:"Michael",overview:"The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the Jackson Five, to the visionary artist whose creative ambition fueled a relentless pursuit to become the biggest entertainer in the world, highlighting both his life off-stage and some of the most iconic performances from his early solo career.",vote_average:8.7,release_date:"2026-04-22",poster_path:"/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg",backdrop_path:"/ufSwlnECLoUbBjPrFqEQcWBzHwc.jpg",original_language:"en",genre_ids:[10402, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[964849]={id:964849,title:"Nightborn",overview:"In Finnish forest, Saga and her husband Jon embark on a new chapter as parents. But Saga\'s joy is overshadowed by a chilling suspicion about their newborn, unbeknownst to Jon, causing a rift as she alone grapples with the disturbing truth.",vote_average:6.1,release_date:"2026-07-01",poster_path:"/e9ALgOANOJbcFpw84MbafK3xvD2.jpg",backdrop_path:"/jVeYae744cR2ogx9ShQ3qXOcRiZ.jpg",original_language:"fi",genre_ids:[27],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1240889]={id:1240889,title:"Teenage Sex and Death at Camp Miasma",overview:"After years of slapdash sequels and waning fandom, the Camp Miasma slasher franchise is handed over to an enthusiastic young director for resurrection. But when she visits the original\'s star, a now-reclusive actress shrouded in mystery, the two women fall into a blood-soaked world of desire, fear, and delirium.",vote_average:7.036,release_date:"2026-08-06",poster_path:"/5Cz1EJOKpZ8hqvBNZYF9C2zTB2T.jpg",backdrop_path:"/d1n2ySWSanU34eEsluRjfrjRq52.jpg",original_language:"en",genre_ids:[35, 27, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
@@ -8749,26 +8751,26 @@ window.movieDataMap[1108427]={id:1108427,title:"Moana",overview:"Teenage Moana a
 window.movieDataMap[454639]={id:454639,title:"Masters of the Universe",overview:"After being separated for 15 years, the Sword of Power leads Prince Adam back to Eternia, where he discovers his home shattered under the fiendish rule of Skeletor. To save his family and his world, Adam must join forces with his closest allies, Teela and Duncan/Man-At-Arms, and embrace his true destiny as He-Man — the most powerful man in the universe.",vote_average:7.2,release_date:"2026-06-03",poster_path:"/oRuyGUHdoaQxWP3SDfafGkStxTC.jpg",backdrop_path:"/yQIdU11DYQQp0neGtGtGxbGfRer.jpg",original_language:"en",genre_ids:[28, 14, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1325734]={id:1325734,title:"The Drama",overview:"A happily engaged couple is put to the test when an unexpected turn sends their wedding week off the rails.",vote_average:6.916,release_date:"2026-04-01",poster_path:"/rnIOUhzwJDfgQakx8EjoNyItKgs.jpg",backdrop_path:"/1oKLEA9JOhvaBwLpqjROisvWMy7.jpg",original_language:"en",genre_ids:[10749, 35, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[83533]={id:83533,title:"Avatar: Fire and Ash",overview:"In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri face a new threat on Pandora: the Ash People, a violent and power-hungry Na\'vi tribe led by the ruthless Varang. Jake\'s family must fight for their survival and the future of Pandora in a conflict that pushes them to their emotional and physical limits.",vote_average:7.643,release_date:"2025-12-17",poster_path:"/bRBeSHfGHwkEpImlhxPmOcUsaeg.jpg",backdrop_path:"/sdZSjtGUTSN8B3al5o0f2WoQfQQ.jpg",original_language:"en",genre_ids:[878, 12, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1487864]={id:1487864,title:"Nando Between Two Worlds - A Sintonia Film",overview:"Caught between family life and his obligations to the criminal underworld, Nando faces an impossible choice about where his true loyalties lie.",vote_average:5.3,release_date:"2026-08-12",poster_path:"/lP558W6RgDYaQvs9GKNGPUhVOLU.jpg",backdrop_path:"/pWvYluV8GNWQJRC4IdrZuJPLwzO.jpg",original_language:"pt",genre_ids:[18, 53, 80],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1284465]={id:1284465,title:"The Death of Robin Hood",overview:"Grappling with his past after a life of crime and murder, Robin Hood finds himself gravely injured after a battle he thought would be his last. In the hands of a mysterious woman, he is offered a chance at salvation.",vote_average:6.288,release_date:"2026-06-18",poster_path:"/92Tsfx7SFafOqWsotvrlJbHyehd.jpg",backdrop_path:"/lh3BDkmWJh998n4fQcHYcVi7dpm.jpg",original_language:"en",genre_ids:[12, 18, 28],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1444466]={id:1444466,title:"Awarapan 2",overview:"Shivam returns to the crime world, where his path forward demands redemption, love, and sacrifice. As relationships deepen and conflicts intensify, every choice tests his resolve and shapes his destiny.",vote_average:0.0,release_date:"2026-08-14",poster_path:"/lD3J6zTbWkVtPYuSUuuBwpuKMCO.jpg",backdrop_path:"/sJBASJrAnbpDeQNGwbLRLx5s1nS.jpg",original_language:"hi",genre_ids:[28, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1169516]={id:1169516,title:"Welcome To The Jungle",overview:"A group of quirky characters gets stuck in a dangerous jungle during a chaotic mission. Filled with confusion, criminals, and hilarious situations, they must work together to survive and find their way out.",vote_average:5.1,release_date:"2026-06-25",poster_path:"/1JlfUuvvX5xLP2LIDah4JhWUtTx.jpg",backdrop_path:"/96chPcURxg5thGyLqxO6otyxHFR.jpg",original_language:"hi",genre_ids:[28, 35, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1307118]={id:1307118,title:"Soulm8te",overview:"After a ruthless tech giant acquires a small robotics company, a grieving engineer is tasked with testing their new AI companion. But when he attempts to reprogram her to be a truly sentient soulmate, she develops needs of her own—unleashing a relentless spree of precision-engineered mayhem.",vote_average:7.276,release_date:"2026-07-31",poster_path:"/bNErActDctl6cdUGw9pnjSCmyhQ.jpg",backdrop_path:"/7t6f6VxA2ZXbbZSVctgt7bZG2DI.jpg",original_language:"en",genre_ids:[27, 878, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1314481]={id:1314481,title:"The Devil Wears Prada 2",overview:"Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway\'s position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand that possesses funding which could ensure Runway\'s survival.",vote_average:7.069,release_date:"2026-04-29",poster_path:"/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg",backdrop_path:"/Af907x5h9W1wVis8XrSd7ynTWuy.jpg",original_language:"en",genre_ids:[35, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1588838]={id:1588838,title:"To the Max",overview:"A group of friends bonded by their love for extreme sports discovers BASE jumping in wingsuits — but feeling like flying carries the highest risks.",vote_average:5.821,release_date:"2026-02-06",poster_path:"/7KtjwHzp2EB5N63bZtxVb2gImjf.jpg",backdrop_path:"/vIYxi7G0nK64cgiiVwSV0sFeQ7F.jpg",original_language:"es",genre_ids:[18, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1228710]={id:1228710,title:"The Mandalorian and Grogu",overview:"The evil Empire has fallen, and Imperial warlords remain scattered throughout the galaxy. As the fledgling New Republic works to protect everything the Rebellion fought for, they have enlisted the help of legendary Mandalorian bounty hunter Din Djarin and his young apprentice Grogu.",vote_average:7.512,release_date:"2026-05-20",poster_path:"/7GV5rrUJf0BRUhoh2cyFoeNthlQ.jpg",backdrop_path:"/wFKDH8nAz7l9iyVobjcNAPTrkNz.jpg",original_language:"en",genre_ids:[28, 12, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1170608]={id:1170608,title:"Dune: Part Three",overview:"Emperor Paul Atreides faces the fallout from his ascent to power as political plots and a galaxy-wide holy war endanger the future only he can see.",vote_average:0.0,release_date:"2026-12-15",poster_path:"/d43fvHQsIMa4kpyhKXw0haEJIvI.jpg",backdrop_path:"/i5E9H7Ik0u61ylDDTbmUpTL3Yw.jpg",original_language:"en",genre_ids:[878, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1340206]={id:1340206,title:"Tuner",overview:"A gifted piano tuner\'s meticulous skills for tuning pianos lead him to discover an unexpected aptitude for cracking safes, turning his life upside down.",vote_average:7.286,release_date:"2026-05-21",poster_path:"/5OvA3i9wZs5jHu0DCrfmXlzAM67.jpg",backdrop_path:"/sT5Inhc0aaReSZoufWgfJTQUbKp.jpg",original_language:"en",genre_ids:[80, 18, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1564614]={id:1564614,title:"Leviticus",overview:"Two teenage boys must escape a violent entity that takes the form of the person they desire most:  each other.",vote_average:6.7,release_date:"2026-06-17",poster_path:"/gnAsZvBygplNpp8PtjoTEYv3VPB.jpg",backdrop_path:"/7y8zWGEjs7tresw4Hzkkf4TdkcL.jpg",original_language:"en",genre_ids:[27, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[936075]={id:936075,title:"Michael",overview:"The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the Jackson Five, to the visionary artist whose creative ambition fueled a relentless pursuit to become the biggest entertainer in the world, highlighting both his life off-stage and some of the most iconic performances from his early solo career.",vote_average:8.671,release_date:"2026-04-22",poster_path:"/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg",backdrop_path:"/ufSwlnECLoUbBjPrFqEQcWBzHwc.jpg",original_language:"en",genre_ids:[10402, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1307118]={id:1307118,title:"Soulm8te",overview:"After a ruthless tech giant acquires a small robotics company, a grieving engineer is tasked with testing their new AI companion. But when he attempts to reprogram her to be a truly sentient soulmate, she develops needs of her own—unleashing a relentless spree of precision-engineered mayhem.",vote_average:7.276,release_date:"2026-07-31",poster_path:"/bNErActDctl6cdUGw9pnjSCmyhQ.jpg",backdrop_path:"/7t6f6VxA2ZXbbZSVctgt7bZG2DI.jpg",original_language:"en",genre_ids:[27, 878, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1612018]={id:1612018,title:"Jackass: Best and Last",overview:"The fifth and final installment to Jackass franchise where the crew go on one last insane crusade.",vote_average:7.521,release_date:"2026-06-25",poster_path:"/tfgccePxnswMqhmtxafliLlcCVR.jpg",backdrop_path:"/dUbP1HNdI0aCq1zgRJw28PWSqmk.jpg",original_language:"en",genre_ids:[28, 35, 99],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1341138]={id:1341138,title:"Spa Weekend",overview:"Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibilities, they’ve forgotten how to take care of themselves—and each other. Burned out and overdue for a break, the women escape to a luxury spa retreat for an unforgettable weekend dedicated to fun, laughter, and a lot of really bad decisions.",vote_average:7.0,release_date:"2026-08-20",poster_path:"/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg",backdrop_path:"/yRsIAwFLDd7QN3Nde0biOwdtDtr.jpg",original_language:"en",genre_ids:[35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1273221]={id:1273221,title:"Scary Movie",overview:"Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer\'s crosshairs and no horror movie IP is safe.",vote_average:6.438,release_date:"2026-06-03",poster_path:"/znHT8peERZRWG1ME3r0Db0EV8k8.jpg",backdrop_path:"/xWBiXclrRmTggQHMRsIn84YHavs.jpg",original_language:"en",genre_ids:[35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1122573]={id:1122573,title:"In the Grey",overview:"A covert team of elite operatives are living in the shadows. When a ruthless despot steals a billion-dollar fortune, they\'re sent to take it back—an impossible heist that erupts into a deadly game of strategy, deception and survival.",vote_average:7.585,release_date:"2026-05-13",poster_path:"/dQgIcW6Th08kMRf2HBoYWoFE6OD.jpg",backdrop_path:"/qcIKxhqGMIj8uujsSoSMZWr8QqU.jpg",original_language:"en",genre_ids:[28, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1226863]={id:1226863,title:"The Super Mario Galaxy Movie",overview:"Having thwarted Bowser\'s previous plot to marry Princess Peach, Mario and Luigi now face a fresh threat in Bowser Jr., who is determined to liberate his father from captivity and restore the family legacy. Alongside companions new and old, the brothers travel across the stars to stop the young heir\'s crusade.",vote_average:8.243,release_date:"2026-04-01",poster_path:"/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg",backdrop_path:"/kxQiIJ4gVcD3K6o14MJ72p5yRcE.jpg",original_language:"en",genre_ids:[10751, 35, 12, 14, 16],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1058424]={id:1058424,title:"Hope",overview:"In the remote South Korean village of Hope Harbor, police chief Bum-seok and officer Sung-ae are called to investigate a mysterious creature wreaking havoc on the community. But all is not as it seems, and perceptions can be misleading. What begins as ignorance plants the seed of disaster, escalating through human conflict into a tragedy of cosmic proportions.",vote_average:8.174,release_date:"2026-07-15",poster_path:"/bcK5naYzzfY0JBCgrPrsrbV6NO1.jpg",backdrop_path:"/i0lipAm0VHFA3EH0CPV0s5LJMIE.jpg",original_language:"ko",genre_ids:[878, 9648, 28],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[931285]={id:931285,title:"Mortal Kombat II",overview:"The fan favorite champions—now joined by Johnny Cage himself—are pitted against one another in the ultimate, no-holds barred, gory battle to defeat the dark rule of Shao Kahn that threatens the very existence of the Earthrealm and its defenders.",vote_average:7.867,release_date:"2026-05-06",poster_path:"/hwRdDFIhaEmpRgoki805YvyyjZf.jpg",backdrop_path:"/4EAAwpylq313qrDqpCxulUrXBNF.jpg",original_language:"en",genre_ids:[28, 14, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1481343]={id:1481343,title:"The Devil\'s Mouth",overview:"A group of college friends\' Thailand adventure turns deadly when they become trapped in submerged caves with a dangerous predator. As oxygen runs low, past conflicts emerge in their desperate fight for survival.",vote_average:6.585,release_date:"2026-07-29",poster_path:"/lH8k9uCWYn2b2gsYleqYBDPbWa8.jpg",backdrop_path:"/4wmvU2Px3C8v3qqyNpBmgJrWQEx.jpg",original_language:"en",genre_ids:[27, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1430077]={id:1430077,title:"Hokum",overview:"When novelist Ohm Bauman retreats to a remote inn to scatter his parents\' ashes, he is consumed by tales of a witch haunting the honeymoon suite. Disturbing visions and a shocking disappearance forces him to confront dark corners of his past.",vote_average:6.911,release_date:"2026-04-29",poster_path:"/x6rHcQFiYcczLQPrmxXPAicm54E.jpg",backdrop_path:"/qY7zVZ7liULhfRoXg4c9Xl83LcR.jpg",original_language:"en",genre_ids:[27],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1130948]={id:1130948,title:"Rosebush Pruning",overview:"In a Spanish villa, American siblings Jack, Ed, Anna and Robert wallow in isolation and their inherited fortune. When Jack wants to move in with his girlfriend and Ed uncovers the truth about their mother’s death, the fabric of the family begins to unravel.",vote_average:6.8,release_date:"2026-04-23",poster_path:"/tXsTtSgguTsk5J115jokwK55awF.jpg",backdrop_path:"/vcZ3UUVmFNk90DBSrTBlTKCdbbE.jpg",original_language:"en",genre_ids:[35, 18, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1341138]={id:1341138,title:"Spa Weekend",overview:"Four lifelong friends realize that somewhere between careers, relationships, families, and everyday responsibilities, they’ve forgotten how to take care of themselves—and each other. Burned out and overdue for a break, the women escape to a luxury spa retreat for an unforgettable weekend dedicated to fun, laughter, and a lot of really bad decisions.",vote_average:7.75,release_date:"2026-08-20",poster_path:"/i3I19SbOyz6AIl0cSYdyVJRucMr.jpg",backdrop_path:"/yRsIAwFLDd7QN3Nde0biOwdtDtr.jpg",original_language:"en",genre_ids:[35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1242332]={id:1242332,title:"Normal",overview:"An unassuming substitute sheriff with a troubled past responds to a bank robbery in a small, sleepy town and unknowingly uncovers something far more explosive.",vote_average:7.228,release_date:"2026-04-16",poster_path:"/38n0tIc9c1cn5C3IMhjnIFJtwfz.jpg",backdrop_path:"/1YU6Hy3x7fUh7dfOzSfjifTp20g.jpg",original_language:"en",genre_ids:[28, 80, 53, 37],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1273221]={id:1273221,title:"Scary Movie",overview:"Twenty-six years after outrunning a suspiciously familiar masked killer, the Core Four are back in the killer\'s crosshairs and no horror movie IP is safe.",vote_average:6.438,release_date:"2026-06-03",poster_path:"/znHT8peERZRWG1ME3r0Db0EV8k8.jpg",backdrop_path:"/xWBiXclrRmTggQHMRsIn84YHavs.jpg",original_language:"en",genre_ids:[35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1314481]={id:1314481,title:"The Devil Wears Prada 2",overview:"Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway\'s position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand that possesses funding which could ensure Runway\'s survival.",vote_average:7.069,release_date:"2026-04-29",poster_path:"/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg",backdrop_path:"/Af907x5h9W1wVis8XrSd7ynTWuy.jpg",original_language:"en",genre_ids:[35, 18],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1632473]={id:1632473,title:"This, That, and Everything in Between",overview:"A TV writer returns home to her estranged mother, igniting chaos as they navigate painful secrets and the  complexities of their dysfunctional family.",vote_average:4.5,release_date:"2026-08-13",poster_path:"/voT1x4FdnBieu1en3CeKhf7N0n8.jpg",backdrop_path:"/6yLIoPWFKwXO2ChTTk6NyNT7Lk2.jpg",original_language:"tl",genre_ids:[18, 10751],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1226863]={id:1226863,title:"The Super Mario Galaxy Movie",overview:"Having thwarted Bowser\'s previous plot to marry Princess Peach, Mario and Luigi now face a fresh threat in Bowser Jr., who is determined to liberate his father from captivity and restore the family legacy. Alongside companions new and old, the brothers travel across the stars to stop the young heir\'s crusade.",vote_average:8.242,release_date:"2026-04-01",poster_path:"/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg",backdrop_path:"/kxQiIJ4gVcD3K6o14MJ72p5yRcE.jpg",original_language:"en",genre_ids:[10751, 35, 12, 14, 16],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1391021]={id:1391021,title:"Once Upon a Time in the Middle East",overview:"Xu Fu travels to the Middle East to work as a chef in a Chinese restaurant to pay off family debts, where he meets floor manager Ma Junsheng. Their Dragon Restaurant rises to fame, attracting crowds with authentic‑tasting Chinese food. But war breaks out, and local conditions take a drastic turn for the worse. No one can remain unaffected. What lies ahead for them? And how will the Dragon Restaurant hold on amid the war?",vote_average:9.2,release_date:"2026-08-08",poster_path:"/wAuGgXjA7GV8NrKfmUKl2AP8vqG.jpg",backdrop_path:"/zr7om0GOLOcLo7SXMmNEG5rz6de.jpg",original_language:"zh",genre_ids:[18, 10752],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1481343]={id:1481343,title:"The Devil\'s Mouth",overview:"A group of college friends\' Thailand adventure turns deadly when they become trapped in submerged caves with a dangerous predator. As oxygen runs low, past conflicts emerge in their desperate fight for survival.",vote_average:6.59,release_date:"2026-07-29",poster_path:"/lH8k9uCWYn2b2gsYleqYBDPbWa8.jpg",backdrop_path:"/4wmvU2Px3C8v3qqyNpBmgJrWQEx.jpg",original_language:"en",genre_ids:[27, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1430077]={id:1430077,title:"Hokum",overview:"When novelist Ohm Bauman retreats to a remote inn to scatter his parents\' ashes, he is consumed by tales of a witch haunting the honeymoon suite. Disturbing visions and a shocking disappearance forces him to confront dark corners of his past.",vote_average:6.915,release_date:"2026-04-29",poster_path:"/x6rHcQFiYcczLQPrmxXPAicm54E.jpg",backdrop_path:"/qY7zVZ7liULhfRoXg4c9Xl83LcR.jpg",original_language:"en",genre_ids:[27],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1423191]={id:1423191,title:"Resident Evil",overview:"Bryan, a medical courier, unwittingly finds himself fighting for survival as one fateful, horrifying night collapses around him in chaos.",vote_average:0.0,release_date:"2026-09-16",poster_path:"/guq5cJ43v0qcMtLqrYHe5P9fgFM.jpg",backdrop_path:"/mRM28tIIm8y0gKy9GKYGwotxuPM.jpg",original_language:"en",genre_ids:[27, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1408170]={id:1408170,title:"Lenin",overview:"In a village trapped by generations of bloodshed, a determined young man dares to challenge the traditions fueling an endless cycle of violence.",vote_average:6.4,release_date:"2026-07-10",poster_path:"/rAHQviBq8Fxi20hNtHPGLnr4L0f.jpg",backdrop_path:"/5P6jYac8MjxyIh0m9JO4K7MUeUc.jpg",original_language:"te",genre_ids:[28, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1233413]={id:1233413,title:"Sinners",overview:"Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.",vote_average:7.506,release_date:"2025-04-16",poster_path:"/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg",backdrop_path:"/nAxGnGHOsfzufThz20zgmRwKur3.jpg",original_language:"en",genre_ids:[27, 28, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1281195]={id:1281195,title:"Truly Naked",overview:"An introverted teen, who has only ever experienced sex through the lens while working for his father’s pornography business, must step out from behind the camera when a feisty classmate challenges him to embrace a real connection.",vote_average:6.909,release_date:"2026-04-15",poster_path:"/y23B9EnC0LDw8zMKlpXJauyLH7k.jpg",backdrop_path:"/mN5HuZwSIueiA62F0LS3wBCFj55.jpg",original_language:"en",genre_ids:[18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1327819]={id:1327819,title:"Hoppers",overview:"Scientists have discovered how to \'hop\' human consciousness into lifelike robotic animals, allowing people to communicate with animals as animals. Animal lover Mabel seizes an opportunity to use the technology, uncovering mysteries within the animal world beyond anything she could have imagined.",vote_average:8.2,release_date:"2026-03-04",poster_path:"/xjtWQ2CL1mpmMNwuU5HeS4Iuwuu.jpg",backdrop_path:"/3Jj0A10NVu2dWnoEL5t5oT79L1Y.jpg",original_language:"en",genre_ids:[12, 16, 35, 10751, 878],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[969681]={id:969681,title:"Spider-Man: Brand New Day",overview:"Fighting crime full-time as Spider-Man in a world that doesn\'t remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",vote_average:7.884,release_date:"2026-07-29",poster_path:"/iPOn6DinuVyLY17YM9mKuPofV08.jpg",backdrop_path:"/7iwUUcKURMT7aKfCwMy6YnGtchD.jpg",original_language:"en",genre_ids:[878, 28, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1368337]={id:1368337,title:"The Odyssey",overview:"Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront the whims of gods, mythological monsters, and trials that stretch both his cunning and his humanity to the breaking point.",vote_average:7.987,release_date:"2026-07-15",poster_path:"/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",backdrop_path:"/r57L2UBLPKcHdZQYg8tagv9XqK2.jpg",original_language:"en",genre_ids:[12, 28, 14],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1084244]={id:1084244,title:"Toy Story 5",overview:"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang\'s jobs become exponentially harder when they have to go head to head with the all-new threat to playtime.",vote_average:7.962,release_date:"2026-06-17",poster_path:"/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",backdrop_path:"/8sSKdEmlmqF4kJUd28SqthXC4yZ.jpg",original_language:"en",genre_ids:[16, 10751, 35, 12],runtime:null,genres:[],credits:{cast:[],crew:[]}};
@@ -8872,10 +8874,10 @@ window.movieDataMap[1279493]={id:1279493,title:"The Get Out",overview:"A nightcl
 window.movieDataMap[1444466]={id:1444466,title:"Awarapan 2",overview:"Shivam returns to the crime world, where his path forward demands redemption, love, and sacrifice. As relationships deepen and conflicts intensify, every choice tests his resolve and shapes his destiny.",vote_average:0.0,release_date:"2026-08-14",poster_path:"/lD3J6zTbWkVtPYuSUuuBwpuKMCO.jpg",backdrop_path:"/sJBASJrAnbpDeQNGwbLRLx5s1nS.jpg",original_language:"hi",genre_ids:[28, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1169537]={id:1169537,title:"Batwara 1947",overview:"The story of an elderly Hindu woman who refuses to leave her ancestral home in Lahore, only to have a Muslim refugee family from Lucknow allotted to her house following the events of the 1947 Partition of India and Pakistan.",vote_average:6.0,release_date:"2026-08-13",poster_path:"/n66Q78zJcx5lL5HGRZPUpHxcsG6.jpg",backdrop_path:"/dYK1TgeitMmRU8Bki3Z75QHS195.jpg",original_language:"hi",genre_ids:[28, 18, 10752],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[19404]={id:19404,title:"Dilwale Dulhania Le Jayenge",overview:"Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.",vote_average:8.5,release_date:"1995-10-20",poster_path:"/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg",backdrop_path:"/84beTJf26mfhoasUlKSOiNSutyS.jpg",original_language:"hi",genre_ids:[35, 18, 10749],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[1392469]={id:1392469,title:"Cocktail 2",overview:"A vacation in Sicily forces longtime partners Diya and Kunal to question their love and commitment after they reunite with Diya\'s old friend Ally.",vote_average:5.9,release_date:"2026-06-19",poster_path:"/oIQmtByV1LtEQSwM4EpdLTyoSlM.jpg",backdrop_path:"/6tROOVmV5vRymO2g52aR8kWlfoT.jpg",original_language:"hi",genre_ids:[10749, 35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[1392469]={id:1392469,title:"Cocktail 2",overview:"A vacation in Sicily forces longtime partners Diya and Kunal to question their love and commitment after they reunite with Diya\'s old friend Ally.",vote_average:5.792,release_date:"2026-06-19",poster_path:"/oIQmtByV1LtEQSwM4EpdLTyoSlM.jpg",backdrop_path:"/6tROOVmV5vRymO2g52aR8kWlfoT.jpg",original_language:"hi",genre_ids:[10749, 35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1291608]={id:1291608,title:"Dhurandhar",overview:"In the early 2000s, an undercover operative infiltrates Karachi\'s underworld, breaking into its inner circle to dismantle a violent nexus from within.",vote_average:7.302,release_date:"2025-12-05",poster_path:"/snBOuXDdhmTvlzMUvP9Em3Pp1u1.jpg",backdrop_path:"/4DfxcN4w0FuYZHQ3JAHzpHWia1U.jpg",original_language:"hi",genre_ids:[28, 80, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1431068]={id:1431068,title:"Main Vaapas Aaunga",overview:"Haunted by a childhood romance and recollections of love lost during the 1947 Partition of India, 95-year-old Ishar Singh Grewal shares his story with his grandson Nirvair, the past unfolding through memories of migration, longing, and a romance that endures across generations.",vote_average:6.6,release_date:"2026-06-10",poster_path:"/wHTNsZxvlfRAndc52hGlbdCUXKS.jpg",backdrop_path:"/bWw9PuPH6vFXlezBoHZ6D9XBhQW.jpg",original_language:"hi",genre_ids:[10749, 18, 9648],runtime:null,genres:[],credits:{cast:[],crew:[]}};
-window.movieDataMap[20453]={id:20453,title:"3 Idiots",overview:"Rascal. Joker. Dreamer. Genius... You\'ve never met a college student quite like \"Rancho.\" From the moment he arrives at India\'s most prestigious university, Rancho\'s outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean\'s daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",vote_average:8.0,release_date:"2009-12-23",poster_path:"/66A9MqXOyVFCssoloscw79z8Tew.jpg",backdrop_path:"/8gT3UKtglLVpu0YfccwbmXZ5Eis.jpg",original_language:"hi",genre_ids:[18, 35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
+window.movieDataMap[20453]={id:20453,title:"3 Idiots",overview:"Rascal. Joker. Dreamer. Genius... You\'ve never met a college student quite like \"Rancho.\" From the moment he arrives at India\'s most prestigious university, Rancho\'s outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean\'s daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",vote_average:8.008,release_date:"2009-12-23",poster_path:"/66A9MqXOyVFCssoloscw79z8Tew.jpg",backdrop_path:"/8gT3UKtglLVpu0YfccwbmXZ5Eis.jpg",original_language:"hi",genre_ids:[18, 35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1582770]={id:1582770,title:"Dhurandhar: The Revenge",overview:"As rival gangs, corrupt officials and a ruthless Major Iqbal close in, Hamza\'s mission for his country spirals into a bloody personal war where the line between patriot and monster disappears in the streets of Lyari.",vote_average:7.3,release_date:"2026-03-18",poster_path:"/ptTwQES14pr5c3aZvJg56YlYgb1.jpg",backdrop_path:"/br4Ra4dRpvR0R7a1zPPkOwGkcky.jpg",original_language:"hi",genre_ids:[28, 80, 53],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[22448]={id:22448,title:"Awarapan",overview:"A loyal henchman is ordered by his boss to keep an eye on his mistress, and trouble begins when he refuses to kill her.",vote_average:6.9,release_date:"2007-06-29",poster_path:"/yVArEukDbkfNjxsynes4PWI4nlk.jpg",backdrop_path:"/hNHvjW48NwXKwncvU8XuTbr210o.jpg",original_language:"hi",genre_ids:[28, 18, 80],runtime:null,genres:[],credits:{cast:[],crew:[]}};
 window.movieDataMap[1239134]={id:1239134,title:"Bhooth Bangla",overview:"A man inherits a palace in rural Mangalpur and plans his sister\'s wedding there, but strange supernatural events and panicked locals force him to investigate the property\'s mysterious past.",vote_average:5.656,release_date:"2026-04-16",poster_path:"/ArIS4vwUxdhm3j7tsTHmffdfU8W.jpg",backdrop_path:"/A2tzVTVtnTvpji96IZmleN78KKv.jpg",original_language:"hi",genre_ids:[27, 35],runtime:null,genres:[],credits:{cast:[],crew:[]}};
