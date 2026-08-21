@@ -269,7 +269,15 @@ function slideRow(rowId, direction) {
 }
 
 function initSliders() {
-  document.querySelectorAll('.slider-container:not(.top-quick-bar)').forEach(container => {
+  document.querySelectorAll('.slider-container').forEach(container => {
+    // Agar ye top-quick-bar hai, toh arrow hide mat karo, isay skip karo
+    if (container.classList.contains('top-quick-bar')) {
+      const leftArrow = container.querySelector('.arrow-left');
+      if (leftArrow) leftArrow.style.display = 'flex'; // Hamesha dikhao
+      return; 
+    }
+
+    // Sirf movie sliders ke liye logic
     const slider = container.querySelector('.movies-slider');
     const leftArrow = container.querySelector('.arrow-left');
     
