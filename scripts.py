@@ -269,17 +269,14 @@ function slideRow(rowId, direction) {
 }
 
 function initSliders() {
-  // Sirf un sliders ko target karein jo 'movies-slider' class rakhte hain
-  // aur jinka parent 'top-quick-bar' NAHI hai
-  document.querySelectorAll('.movies-slider').forEach(slider => {
-    const container = slider.parentElement;
+  // Ab yeh logic movie sliders aur top quick bar DONO par kaam karegi
+  document.querySelectorAll('.movies-slider, .top-quick-bar').forEach(element => {
+    // Agar element .top-quick-bar hai, toh iske andar slider ko find karo, warna element khud slider hai
+    const slider = element.classList.contains('top-quick-bar') ? element : element.querySelector('.movies-slider');
+    const container = element.classList.contains('top-quick-bar') ? element : element.parentElement;
+    const leftArrow = container.querySelector('.back-arrow-btn') || container.querySelector('.arrow-left');
     
-    // Agar ye quick bar ke andar hai, toh isay skip kar do
-    if (container.classList.contains('top-quick-bar')) return;
-
-    const leftArrow = container.querySelector('.arrow-left');
-    
-    if (leftArrow) {
+    if (slider && leftArrow) {
       const updateArrow = () => {
         if (slider.scrollLeft > 10) {
           leftArrow.style.display = 'flex';
