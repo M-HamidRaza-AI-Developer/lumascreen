@@ -388,7 +388,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 
 /* ============================================
    RESPONSIVE / MOBILE-FIRST FIXES
-   Add this block at the END of CSS in styles.py
    ============================================ */
 
 /* ---------- TABLET (max-width: 1024px) ---------- */
@@ -423,7 +422,10 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
     scrollbar-width: none;
     justify-content: flex-start;
   }
- /* FIX: Search Dropdown perfectly aligned under search bar within screen bounds */
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab { white-space: nowrap; flex-shrink: 0; }
+
+  /* FIX: Search Dropdown Perfectly Contained Inside Mobile View */
   .nav-search-wrap { position: relative; }
   .nav-search { width: 130px; font-size: 12px; }
   .nav-search:focus { width: 150px; }
@@ -433,9 +435,10 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
     top: calc(100% + 8px) !important;
     right: 0 !important;
     left: auto !important;
-    width: 250px !important;
-    max-width: calc(100vw - 32px) !important;
+    width: 260px !important;
+    max-width: calc(100vw - 28px) !important;
   }
+
   .top-quick-bar { padding: 8px 14px; gap: 10px; top: auto; }
   .quick-pill { font-size: 11px; padding: 5px 11px; }
 
