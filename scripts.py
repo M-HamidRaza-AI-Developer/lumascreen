@@ -204,6 +204,7 @@ function enterApp() {
   setTimeout(initHero, 100);
   setupLiveSearch();
   loadContinueWatching();
+  initSliders();
 }
 
 function saveProfile() {
@@ -250,6 +251,7 @@ function showTab(tab) {
   const target = document.getElementById('page-' + tab);
   if (target) target.classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(initSliders, 50);
 }
 
 function goBack() {
@@ -264,6 +266,27 @@ function slideRow(rowId, direction) {
   const container = document.getElementById(rowId);
   if (!container) return;
   container.scrollBy({ left: direction * 600, behavior: 'smooth' });
+}
+
+function initSliders() {
+  document.querySelectorAll('.slider-container').forEach(container => {
+    const slider = container.querySelector('.movies-slider');
+    const leftArrow = container.querySelector('.arrow-left');
+    
+    if (slider && leftArrow) {
+      const updateArrow = () => {
+        if (slider.scrollLeft > 10) {
+          leftArrow.style.display = 'flex';
+        } else {
+          leftArrow.style.display = 'none';
+        }
+      };
+      
+      updateArrow();
+      slider.removeEventListener('scroll', updateArrow);
+      slider.addEventListener('scroll', updateArrow);
+    }
+  });
 }
 
 function initHero() {
@@ -286,7 +309,6 @@ function showMovieDetail(movieId) {
   let modal = document.getElementById('movie-modal');
   let body = document.getElementById('modal-body-content');
  
-  // Auto-inject the modal container if the HTML generator missed it
   if (!modal || !body) {
     modal = document.createElement('div');
     modal.id = 'movie-modal';
@@ -300,23 +322,15 @@ function showMovieDetail(movieId) {
     document.body.appendChild(modal);
   }
  
-  // ✅ FIX: Always force correct fixed/overlay styling onto the modal,
-  // even if it already existed in the generated HTML (which is missing
-  // .modal-overlay / .modal-box CSS rules). This is what was causing the
-  // "stuck screen" bug — the modal was rendering inline in the page flow
-  // instead of as a fullscreen overlay, so it was invisible while
-  // document.body.style.overflow stayed locked to 'hidden'.
   modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(10px); overflow-y:auto;';
  
-  const modalBox = modal.firstElementChild; // .modal-box or the dynamically created wrapper
+  const modalBox = modal.firstElementChild;
   if (modalBox) {
     modalBox.style.cssText = 'background:#141722; width:100%; max-width:650px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,215,0,0.3); box-shadow:0 20px 50px rgba(0,0,0,0.8); position:relative; max-height:90vh; overflow-y:auto;';
   }
  
-  // Make sure clicking the dark backdrop still closes the modal
   modal.onclick = function(event) { if (event.target === modal) closeModal(); };
  
-  // Lock scrolling and display the modal immediately
   modal.style.display = 'flex';
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -375,7 +389,6 @@ function closeModal() {
     modal.style.display = 'none';
     modal.classList.add('hidden');
   }
-  // ✅ FIX: always release scroll lock, no matter what
   document.body.style.overflow = '';
 }
 
@@ -393,6 +406,7 @@ function filterByGenreName(genreName) {
   } else {
     grid.innerHTML = `<div class="movies-grid" style="padding:0;width:100%">${results.map(m => buildCardHTML(m)).join('')}</div>`;
   }
+  setTimeout(initSliders, 50);
 }
 
 function setupLiveSearch() {
@@ -430,6 +444,7 @@ function doSearch() {
   const results = allMovies.filter(m => (m.title || '').toLowerCase().includes(q.toLowerCase()));
   const grid = document.getElementById('search-results-grid');
   grid.innerHTML = results.length === 0 ? `<div class="no-results"><h3>No results for "${q}"</h3></div>` : `<div class="movies-grid" style="padding:0;width:100%">${results.map(m => buildCardHTML(m)).join('')}</div>`;
+  setTimeout(initSliders, 50);
 }
 
 function buildCardHTML(m) {
