@@ -425,18 +425,18 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tab { white-space: nowrap; flex-shrink: 0; }
 
- /* FIX: Search Dropdown forced inside mobile screen */
-  .nav-search-wrap { position: static !important; }
-  .nav-search { width: 130px; font-size: 12px; }
-  .nav-search:focus { width: 150px; }
+  /* PROFESSIONAL MOBILE SEARCH & DROPDOWN FIX */
+  .nav-search-wrap { position: relative !important; flex: 1; max-width: 180px; }
+  .nav-search { width: 110px !important; font-size: 12px; padding: 7px 10px 7px 32px; transition: width 0.3s ease; }
+  .nav-search:focus { width: 175px !important; background: rgba(255,255,255,0.12) !important; }
   
   .search-dropdown {
-    position: fixed !important;
-    top: 60px !important;
-    left: 10px !important;
-    right: 10px !important;
-    width: auto !important;
-    max-width: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    right: auto !important;
+    width: 270px !important;
+    max-width: 88vw !important;
   }
 
   .top-quick-bar { padding: 8px 14px; gap: 10px; top: auto; }
@@ -485,8 +485,8 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   .hero-section { height: 340px; }
   .hero-title { font-size: 22px; }
   .hero-genres .genre-tag { font-size: 9px; padding: 2px 6px; }
-  .nav-search { width: 100px; }
-  .nav-search:focus { width: 120px; }
+  .nav-search { width: 95px !important; }
+  .nav-search:focus { width: 155px !important; }
   .splash-name { font-size: 36px; }
   .stats-grid { grid-template-columns: 1fr; }
 }
