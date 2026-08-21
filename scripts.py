@@ -269,7 +269,7 @@ function slideRow(rowId, direction) {
 }
 
 function initSliders() {
-  document.querySelectorAll('.slider-container').forEach(container => {
+  document.querySelectorAll('.slider-container:not(.top-quick-bar)').forEach(container => {
     const slider = container.querySelector('.movies-slider');
     const leftArrow = container.querySelector('.arrow-left');
     
