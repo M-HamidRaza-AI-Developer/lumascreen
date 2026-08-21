@@ -9338,27 +9338,35 @@ function slideRow(rowId, direction) {
 }
 
 function initSliders() {
-  // Ab yeh logic movie sliders aur top quick bar DONO par kaam karegi
-  document.querySelectorAll('.movies-slider, .top-quick-bar').forEach(element => {
-    // Agar element .top-quick-bar hai, toh iske andar slider ko find karo, warna element khud slider hai
-    const slider = element.classList.contains('top-quick-bar') ? element : element.querySelector('.movies-slider');
-    const container = element.classList.contains('top-quick-bar') ? element : element.parentElement;
-    const leftArrow = container.querySelector('.back-arrow-btn') || container.querySelector('.arrow-left');
+  // 1. Movies Slider Logic
+  document.querySelectorAll('.slider-container').forEach(container => {
+    // Top quick bar ko yahan se ignore karna hai
+    if (container.classList.contains('top-quick-bar')) return;
+
+    const slider = container.querySelector('.movies-slider');
+    const leftArrow = container.querySelector('.arrow-left');
     
     if (slider && leftArrow) {
-      const updateArrow = () => {
-        if (slider.scrollLeft > 10) {
-          leftArrow.style.display = 'flex';
-        } else {
-          leftArrow.style.display = 'none';
-        }
+      const updateMovieArrow = () => {
+        leftArrow.style.display = slider.scrollLeft > 10 ? 'flex' : 'none';
       };
-      
-      updateArrow();
-      slider.removeEventListener('scroll', updateArrow);
-      slider.addEventListener('scroll', updateArrow);
+      updateMovieArrow();
+      slider.removeEventListener('scroll', updateMovieArrow);
+      slider.addEventListener('scroll', updateMovieArrow);
     }
   });
+
+  // 2. Top Quick Bar Logic
+  const quickBar = document.querySelector('.top-quick-bar');
+  const quickArrow = document.querySelector('.back-arrow-btn');
+  if (quickBar && quickArrow) {
+    const updateQuickArrow = () => {
+      quickArrow.style.display = quickBar.scrollLeft > 10 ? 'flex' : 'none';
+    };
+    updateQuickArrow();
+    quickBar.removeEventListener('scroll', updateQuickArrow);
+    quickBar.addEventListener('scroll', updateQuickArrow);
+  }
 }
 
 function initHero() {
