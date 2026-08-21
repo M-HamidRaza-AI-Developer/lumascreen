@@ -9338,19 +9338,17 @@ function slideRow(rowId, direction) {
 }
 
 function initSliders() {
-  document.querySelectorAll('.slider-container').forEach(container => {
-    // Agar ye top-quick-bar hai, toh arrow hide mat karo, isay skip karo
-    if (container.classList.contains('top-quick-bar')) {
-      const leftArrow = container.querySelector('.arrow-left');
-      if (leftArrow) leftArrow.style.display = 'flex'; // Hamesha dikhao
-      return; 
-    }
+  // Sirf un sliders ko target karein jo 'movies-slider' class rakhte hain
+  // aur jinka parent 'top-quick-bar' NAHI hai
+  document.querySelectorAll('.movies-slider').forEach(slider => {
+    const container = slider.parentElement;
+    
+    // Agar ye quick bar ke andar hai, toh isay skip kar do
+    if (container.classList.contains('top-quick-bar')) return;
 
-    // Sirf movie sliders ke liye logic
-    const slider = container.querySelector('.movies-slider');
     const leftArrow = container.querySelector('.arrow-left');
     
-    if (slider && leftArrow) {
+    if (leftArrow) {
       const updateArrow = () => {
         if (slider.scrollLeft > 10) {
           leftArrow.style.display = 'flex';
