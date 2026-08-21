@@ -283,47 +283,101 @@ function prevHero() { heroIndex = (heroIndex - 1 + heroTotal) % heroTotal; updat
 function goHero(i)  { heroIndex = i; updateHero(); if(heroTimer){clearInterval(heroTimer);heroTimer=setInterval(nextHero,5000);} }
 
 function showMovieDetail(movieId) {
-  const modal = document.getElementById('movie-modal');
-  const body  = document.getElementById('modal-body-content');
-  body.innerHTML = '<div style="text-align:center;padding:60px;color:#aaa">Loading...</div>';
+  let modal = document.getElementById('movie-modal');
+  let body = document.getElementById('modal-body-content');
+ 
+  // Auto-inject the modal container if the HTML generator missed it
+  if (!modal || !body) {
+    modal = document.createElement('div');
+    modal.id = 'movie-modal';
+ 
+    const modalContent = document.createElement('div');
+    body = document.createElement('div');
+    body.id = 'modal-body-content';
+ 
+    modalContent.appendChild(body);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+  }
+ 
+  // ✅ FIX: Always force correct fixed/overlay styling onto the modal,
+  // even if it already existed in the generated HTML (which is missing
+  // .modal-overlay / .modal-box CSS rules). This is what was causing the
+  // "stuck screen" bug — the modal was rendering inline in the page flow
+  // instead of as a fullscreen overlay, so it was invisible while
+  // document.body.style.overflow stayed locked to 'hidden'.
+  modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(10px); overflow-y:auto;';
+ 
+  const modalBox = modal.firstElementChild; // .modal-box or the dynamically created wrapper
+  if (modalBox) {
+    modalBox.style.cssText = 'background:#141722; width:100%; max-width:650px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,215,0,0.3); box-shadow:0 20px 50px rgba(0,0,0,0.8); position:relative; max-height:90vh; overflow-y:auto;';
+  }
+ 
+  // Make sure clicking the dark backdrop still closes the modal
+  modal.onclick = function(event) { if (event.target === modal) closeModal(); };
+ 
+  // Lock scrolling and display the modal immediately
+  modal.style.display = 'flex';
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
+  body.innerHTML = '<div style="text-align:center;padding:60px;color:#fff;font-size:18px;">Loading...</div>';
+ 
   const m = window.movieDataMap && window.movieDataMap[movieId];
-  if (m) renderModal(m);
-}
-
-function renderModal(m) {
-  const body = document.getElementById('modal-body-content');
+  if (!m) {
+    body.innerHTML = '<div style="text-align:center;padding:60px;color:#ff6b6b;">Error: Movie details missing.</div>';
+    return;
+  }
+ 
   const backdrop = m.backdrop_path ? 'https://image.tmdb.org/t/p/w1280' + m.backdrop_path : '';
-  const genres = (m.genre_ids||[]).map(id=>`<span class="genre-tag">${(window.genreMap||{})[id]||''}</span>`).join('');
-  const safeTitle = (m.title||'Unknown').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  const safeTitle = (m.title || 'Unknown').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  const vote = m.vote_average ? m.vote_average.toFixed(1) : 'N/A';
+  const releaseDate = m.release_date || 'N/A';
+  const overview = m.overview || 'No description available.';
+ 
   body.innerHTML = `
-    <div class="modal-header" style="position:relative">
-      ${backdrop?`<img src="${backdrop}" style="width:100%;height:260px;object-fit:cover;border-radius:20px 20px 0 0">`:''}
-      <button onclick="closeModal()" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.7);color:#fff;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer">✕</button>
+    <div style="position:relative; background:#000;">
+      ${backdrop ? `<img src="${backdrop}" style="width:100%;height:260px;object-fit:cover;">` : `<div style="width:100%;height:100px;background:#000;"></div>`}
+      <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.8);color:#fff;border:1px solid rgba(255,255,255,0.3);width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:100;font-size:16px;line-height:1;">✕</button>
     </div>
-    <div style="padding:24px">
-      <h2 style="font-size:26px;font-weight:900;margin-bottom:8px">${m.title}</h2>
-      <div style="color:var(--gold);margin-bottom:12px">⭐ ${m.vote_average?m.vote_average.toFixed(1):'N/A'} &bull; 📅 ${m.release_date||'N/A'}</div>
-      <div class="card-genres" style="margin-bottom:12px">${genres}</div>
-      <p style="color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:20px">${m.overview}</p>
-      <button onclick="watchMovie('${safeTitle}', ${m.id})" style="width:100%;padding:14px;background:var(--gold);border:none;border-radius:10px;font-weight:700;cursor:pointer">▶ Watch Movie Now</button>
-    </div>`;
+    <div style="padding:28px;">
+      <h2 style="font-size:26px;font-weight:900;color:#fff;margin-bottom:8px;">${m.title}</h2>
+      <div style="color:#FFD700;font-weight:600;margin-bottom:16px;font-size:14px;">⭐ ${vote} &bull; 📅 ${releaseDate}</div>
+      <p style="color:#aaa;font-size:14px;line-height:1.6;margin-bottom:24px;">${overview}</p>
+      <button onclick="watchMovie('${safeTitle}', ${m.id})" style="width:100%;padding:16px;background:linear-gradient(135deg, #FFF099, #FFD700);color:#000;border:none;border-radius:10px;font-weight:800;cursor:pointer;font-size:16px;">▶ Stream Movie Online</button>
+    </div>
+  `;
 }
 
 function watchMovie(title, tmdbId) {
-  let history = JSON.parse(localStorage.getItem('lumascreen_watch_history') || '[]');
-  if (!history.includes(tmdbId)) { history.unshift(tmdbId); if (history.length > 10) history.pop(); localStorage.setItem('lumascreen_watch_history', JSON.stringify(history)); }
-  document.getElementById('modal-body-content').innerHTML = `
-    <div style="padding:20px">
-      <h3 style="color:var(--gold);margin-bottom:12px">🎬 Playing: ${title}</h3>
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-        <iframe src="https://vidsrc.to/embed/movie/${tmdbId}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen></iframe>
-      </div>
-    </div>`;
+  const body = document.getElementById('modal-body-content');
+  if (!body) return;
+  
+  const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(title + ' watch online streaming free');
+  
+  body.innerHTML = `
+    <div style="padding:40px 24px; text-align:center;">
+      <h3 style="color:#FFD700;margin-bottom:20px;font-size:24px;font-weight:900;">🎬 ${title}</h3>
+      <p style="color:#ccc;margin-bottom:32px;line-height:1.6;font-size:15px;">
+        Direct embedding is restricted. Click the secure button below to launch the streaming source in a new window.
+      </p>
+      <a href="${searchUrl}" target="_blank" style="display:inline-block;padding:16px 36px;background:linear-gradient(135deg, #FFF099, #FFD700);color:#000;border-radius:10px;font-weight:800;text-decoration:none;font-size:16px;box-shadow:0 6px 20px rgba(255,215,0,0.3);">
+        ▶ Open Secure Stream
+      </a>
+      <br><br><br>
+      <button onclick="showMovieDetail(${tmdbId})" style="background:transparent;color:#888;border:1px solid #444;padding:10px 20px;border-radius:8px;cursor:pointer;">⬅ Back to Details</button>
+    </div>
+  `;
 }
 
-function closeModal() { document.getElementById('movie-modal').classList.add('hidden'); document.body.style.overflow = ''; loadContinueWatching(); }
+function closeModal() {
+  const modal = document.getElementById('movie-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    modal.classList.add('hidden');
+  }
+  // ✅ FIX: always release scroll lock, no matter what
+  document.body.style.overflow = '';
+}
 
 function filterByGenreName(genreName) {
   showTab('search-results');

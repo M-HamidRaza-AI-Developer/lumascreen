@@ -153,7 +153,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 }
 .nav-user-btn:hover { transform: scale(1.08); box-shadow: 0 0 12px rgba(255,215,0,0.5); }
 
-/* SEARCH DROPDOWN FIX */
 .search-dropdown {
   position: absolute;
   top: calc(100% + 12px);
@@ -302,7 +301,6 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
 .genre-tag { background:rgba(255,215,0,0.1); color:var(--gold); font-size:10px; padding:2px 7px; border-radius:20px; border:1px solid rgba(255,215,0,0.2); }
 .card-overview { color:var(--text2); font-size:11px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 
-/* ACCOUNT PAGE STYLES */
 .account-page { padding: 40px 32px; max-width: 800px; margin: 0 auto; }
 .profile-card { background: var(--card-bg); border-radius: 20px; padding: 32px; border: 1px solid rgba(255,215,0,0.2); margin-bottom: 24px; display: flex; align-items: center; gap: 24px; }
 .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg,#FFF099,#FFD700); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #000; flex-shrink: 0; }
