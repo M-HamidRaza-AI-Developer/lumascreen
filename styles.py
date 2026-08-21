@@ -6,16 +6,11 @@ LOGO_SVG = """<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" clas
       <stop offset="0%" stop-color="#FFD700" stop-opacity="0.6"/>
       <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="splashGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF3B0"/>
-      <stop offset="50%" stop-color="#FFD700"/>
-      <stop offset="100%" stop-color="#FF9900"/>
-    </linearGradient>
   </defs>
   <circle cx="60" cy="60" r="56" fill="url(#splashGlow)"/>
-  <circle cx="60" cy="60" r="48" fill="#12131A" stroke="url(#splashGold)" stroke-width="3.5"/>
-  <circle cx="60" cy="60" r="28" fill="none" stroke="url(#splashGold)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
-  <circle cx="60" cy="60" r="6" fill="url(#splashGold)"/>
+  <circle cx="60" cy="60" r="48" fill="#181A24" stroke="#FFD700" stroke-width="6"/>
+  <circle cx="60" cy="60" r="26" fill="none" stroke="#FFF099" stroke-width="5" stroke-dasharray="10 10"/>
+  <circle cx="60" cy="60" r="13" fill="#FFD700"/>
 </svg>"""
 
 LOGO_SVG_SMALL = """<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));">
