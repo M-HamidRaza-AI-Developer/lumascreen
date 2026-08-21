@@ -425,18 +425,18 @@ body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Roboto,He
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tab { white-space: nowrap; flex-shrink: 0; }
 
-  /* FIX: Search Dropdown Perfectly Contained Inside Mobile View */
-  .nav-search-wrap { position: relative; }
+ /* FIX: Search Dropdown forced inside mobile screen */
+  .nav-search-wrap { position: static !important; }
   .nav-search { width: 130px; font-size: 12px; }
   .nav-search:focus { width: 150px; }
   
   .search-dropdown {
-    position: absolute !important;
-    top: calc(100% + 8px) !important;
-    right: 0 !important;
-    left: auto !important;
-    width: 260px !important;
-    max-width: calc(100vw - 28px) !important;
+    position: fixed !important;
+    top: 60px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: none !important;
   }
 
   .top-quick-bar { padding: 8px 14px; gap: 10px; top: auto; }
